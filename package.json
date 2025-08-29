@@ -6,8 +6,8 @@
   "scripts": {
     "start": "npx live-server --port=3000 --open=/index.html",
     "dev": "npx live-server --port=3000 --open=/index.html --watch=.",
-    "build": "if not exist dist mkdir dist && copy *.html dist\ && copy *.css dist\ && copy *.js dist\ && if exist assets xcopy assets dist\assets\ /E /I",
-    "build:clean": "if exist dist rmdir /s /q dist && npm run build",
+    "build": "mkdir -p dist && cp *.html dist/ && cp *.css dist/ && cp *.js dist/ && if [ -d assets ]; then cp -r assets dist/; fi",
+    "build:clean": "rm -rf dist && npm run build",
     "deploy": "npm run build && echo Ready for deployment",
     "lint": "echo Running code quality checks...",
     "test": "echo Running tests...",
