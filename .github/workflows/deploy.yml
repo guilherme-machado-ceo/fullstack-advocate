@@ -85,12 +85,7 @@ jobs:
         run: |
           aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete --cache-control "max-age=86400"
           
-      - name: Invalidate CloudFront
-        if: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
-        run: |
-          aws cloudfront create-invalidation \
-            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
-            --paths "/*"
+      # CloudFront invalidation removed - not using CloudFront
             
       - name: Deployment success notification
         run: |
