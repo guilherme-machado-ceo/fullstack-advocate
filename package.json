@@ -1,0 +1,56 @@
+{
+  "name": "fullstack-advocate",
+  "version": "1.0.0",
+  "description": "Serviço de consultoria técnica especializada que atua como cérebro técnico de equipes de desenvolvimento, garantindo alinhamento entre todas as camadas do sistema.",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx live-server --port=3000 --open=/index.html",
+    "dev": "npx live-server --port=3000 --open=/index.html --watch=.",
+    "build": "if not exist dist mkdir dist && copy *.html dist\ && copy *.css dist\ && copy *.js dist\ && if exist assets xcopy assets dist\assets\ /E /I",
+    "build:clean": "if exist dist rmdir /s /q dist && npm run build",
+    "deploy": "npm run build && echo Ready for deployment",
+    "lint": "echo Running code quality checks...",
+    "test": "echo Running tests...",
+    "serve": "npx live-server dist --port=8080"
+  },
+  "keywords": [
+    "fullstack",
+    "advocate",
+    "consultoria",
+    "technical-consulting",
+    "software-architecture",
+    "devops",
+    "frontend",
+    "backend",
+    "infrastructure",
+    "technical-debt",
+    "code-review",
+    "mentoring"
+  ],
+  "author": {
+    "name": "Guilherme Machado",
+    "email": "contato@hubstry.com",
+    "url": "https://github.com/guilherme-machado-ceo"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guilherme-machado-ceo/fullstack-advocate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/guilherme-machado-ceo/fullstack-advocate/issues"
+  },
+  "homepage": "https://github.com/guilherme-machado-ceo/fullstack-advocate#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

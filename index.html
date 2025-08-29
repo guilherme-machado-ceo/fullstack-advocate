@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Stack Advocate | Hubstry</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 4L28 28H4L16 4Z" stroke="#007BFF" stroke-width="2" stroke-linejoin="round"/>
+                        <circle cx="10" cy="10" r="3" fill="#007BFF"/>
+                        <circle cx="22" cy="10" r="3" fill="#28A745"/>
+                        <circle cx="10" cy="22" r="3" fill="#FD7E14"/>
+                        <circle cx="22" cy="22" r="3" fill="#6C757D"/>
+                        <line x1="16" y1="4" x2="10" y2="10" stroke="#007BFF" stroke-width="1"/>
+                        <line x1="16" y1="4" x2="22" y2="10" stroke="#28A745" stroke-width="1"/>
+                        <line x1="10" y1="22" x2="16" y2="28" stroke="#FD7E14" stroke-width="1"/>
+                        <line x1="22" y1="22" x2="16" y2="28" stroke="#6C757D" stroke-width="1"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Hubstry</span>
+            </div>
+            <nav class="nav">
+                <a href="#framework">Framework</a>
+                <a href="#gallery">Galeria</a>
+                <a href="#contact">Contato</a>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Full Stack Advocate</h1>
+                <p class="hero-subtitle">O defensor técnico que conecta todas as camadas do seu software</p>
+                <p class="hero-description">Somos especialistas em Full Stack que eliminam silos entre equipes, reduzem débito técnico e aceleram a entrega de software de qualidade.</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">40%</span>
+                        <span class="stat-label">Mais Velocidade</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">60%</span>
+                        <span class="stat-label">Menos Bugs</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Integração</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">Solicitar Consultoria</a>
+                    <a href="#framework" class="btn-secondary">Ver Framework</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="assets/Generated Image August 29, 2025 - 11_24AM.jpeg" alt="Full Stack Advocate - Arquitetura de Software" class="hero-main-image">
+                <div class="logo-visual">
+                    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M100 30L170 170H30L100 30Z" stroke="#007BFF" stroke-width="4" stroke-linejoin="round"/>
+                        <circle cx="65" cy="65" r="15" fill="#007BFF"/>
+                        <circle cx="135" cy="65" r="15" fill="#28A745"/>
+                        <circle cx="65" cy="135" r="15" fill="#FD7E14"/>
+                        <circle cx="135" cy="135" r="15" fill="#6C757D"/>
+                        <line x1="100" y1="30" x2="65" y2="65" stroke="#007BFF" stroke-width="2"/>
+                        <line x1="100" y1="30" x2="135" y2="65" stroke="#28A745" stroke-width="2"/>
+                        <line x1="65" y1="135" x2="100" y2="170" stroke="#FD7E14" stroke-width="2"/>
+                        <line x1="135" y1="135" x2="100" y2="170" stroke="#6C757D" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>O Problema</h2>
+                <p>Enquanto uns cuidam do frontend, outros do backend, e ninguém olha a infraestrutura...</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <i class="fas fa-sync-alt problem-icon"></i>
+                    <h3>Desconexão entre equipes</h3>
+                    <p>Cada área trabalha isoladamente, sem visão holística do sistema</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-exclamation-triangle problem-icon"></i>
+                    <h3>Dívida técnica acumulada</h3>
+                    <p>Problemas técnicos crescem sem controle, comprometendo a qualidade</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-building problem-icon"></i>
+                    <h3>Arquiteturas frágeis</h3>
+                    <p>Sistemas que não escalam e quebram sob pressão</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-clock problem-icon"></i>
+                    <h3>Tempo desperdiçado</h3>
+                    <p>Horas perdidas resolvendo problemas que poderiam ser evitados</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution section-padding bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>A Solução: Full Stack Advocate</h2>
+                <p>Somos o advogado técnico do seu software</p>
+            </div>
+            <div class="solution-content">
+                <div class="solution-text">
+                    <blockquote>
+                        "Você não precisa ter um CTO técnico. Nós somos o Full Stack Advocate que conecta todas as camadas do seu sistema."
+                    </blockquote>
+                    <div class="solution-benefits">
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Análise técnica completa do seu stack</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Recomendações práticas para melhorias imediatas</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Padrões técnicos alinhados com melhores práticas</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Acompanhamento contínuo da saúde do seu software</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Redução de riscos técnicos e aceleração de entregas</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="solution-image">
+                    <img src="assets/Generated Image August 29, 2025 - 11_23AM.jpeg" alt="Full Stack Advocate - Conectando todas as camadas do sistema">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Como Funciona</h2>
+                <p>Um processo simples e eficaz para transformar sua equipe técnica</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Avaliação Inicial</h3>
+                    <p>Análise da arquitetura atual, mapeamento de dívida técnica e identificação de gargalos</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Plano de Ação</h3>
+                    <p>Roadmap de melhorias técnicas, priorização por impacto e cronograma de implementação</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Execução & Acompanhamento</h3>
+                    <p>Integração com sua equipe, reuniões semanais e relatórios de progresso</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits section-padding bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Benefícios</h2>
+                <p>Resultados mensuráveis para sua equipe técnica</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefits-results">
+                    <h3>Resultados</h3>
+                    <ul>
+                        <li>Arquitetura mais robusta</li>
+                        <li>Código mais limpo</li>
+                        <li>Equipes alinhadas</li>
+                        <li>Redução de dívida técnica</li>
+                        <li>Processos padronizados</li>
+                    </ul>
+                </div>
+                <div class="benefits-impact">
+                    <h3>Impacto</h3>
+                    <ul>
+                        <li>Menos bugs em produção</li>
+                        <li>Menor tempo de manutenção</li>
+                        <li>Maior produtividade</li>
+                        <li>Menor custo de desenvolvimento</li>
+                        <li>Escalabilidade garantida</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans -->
+    <section class="plans section-padding" id="planos">
+        <div class="container">
+            <div class="section-header">
+                <h2>Planos e Preços</h2>
+                <p>Escolha o plano ideal para sua equipe</p>
+            </div>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>FSA Lite</h3>
+                        <div class="plan-price">$1.500<span>/mês</span></div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>4 horas de consultoria técnica/mês</li>
+                        <li>Análise de arquitetura</li>
+                        <li>Relatório mensal</li>
+                        <li>Recomendações prioritárias</li>
+                        <li class="not-included">Integração com equipe</li>
+                        <li class="not-included">Revisão de código</li>
+                    </ul>
+                    <button class="btn-secondary plan-btn">Escolher Plano</button>
+                    <p class="plan-note">Ideal para startups pequenas</p>
+                </div>
+                <div class="plan-card popular">
+                    <div class="popular-badge">Mais Popular</div>
+                    <div class="plan-header">
+                        <h3>FSA Pro</h3>
+                        <div class="plan-price">$5.000<span>/mês</span></div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>16 horas de acompanhamento/semana</li>
+                        <li>Integração com equipe</li>
+                        <li>Definição de padrões técnicos</li>
+                        <li>Revisão de código</li>
+                        <li>Mentoria técnica</li>
+                        <li class="not-included">Plataforma digital</li>
+                    </ul>
+                    <button class="btn-primary plan-btn">Escolher Plano</button>
+                    <p class="plan-note">Para empresas em crescimento</p>
+                </div>
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>FSA Enterprise</h3>
+                        <div class="plan-price">Sob consulta</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>Plataforma digital inclusa</li>
+                        <li>Dashboard de saúde técnica</li>
+                        <li>Monitoramento contínuo</li>
+                        <li>IA para análise automática</li>
+                        <li>Suporte prioritário 24/7</li>
+                        <li>Personalização completa</li>
+                    </ul>
+                    <button class="btn-secondary plan-btn">Entrar em Contato</button>
+                    <p class="plan-note">Para grandes empresas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Framework Section -->
+    <section class="framework section-padding bg-light" id="framework">
+        <div class="container">
+            <div class="section-header">
+                <h2>Framework Full Stack Advocate</h2>
+                <p>Metodologia proprietária para conectar todas as camadas tecnológicas</p>
+            </div>
+            <div class="framework-content">
+                <div class="framework-text">
+                    <h3>Integração Completa de Tecnologias</h3>
+                    <p>Nosso framework conecta Frontend, Backend, DevOps e Banco de Dados em um ecossistema coeso e eficiente.</p>
+                    <div class="framework-benefits">
+                        <div class="benefit-item">
+                            <i class="fas fa-sync"></i>
+                            <span>Integração Perfeita entre Equipes</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>40% Mais Velocidade na Entrega</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-bug"></i>
+                            <span>60% Menos Bugs em Produção</span>
+                        </div>
+                    </div>
+                    <a href="framework-fsa.html" class="btn btn-primary">Ver Framework Completo</a>
+                </div>
+                <div class="framework-visual">
+                    <img src="assets/image - 2025-08-29T113215.806.jpg" alt="Framework Full Stack Advocate" class="framework-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossa Abordagem Visual</h2>
+                <p>Conectando todas as camadas do seu sistema</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="assets/Generated Image August 29, 2025 - 11_23AM.jpeg" alt="Consultoria Técnica">
+                    <div class="gallery-overlay">
+                        <h3>Consultoria Especializada</h3>
+                        <p>Análise técnica completa do seu stack</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/Generated Image August 29, 2025 - 11_24AM.jpeg" alt="Evolução Contínua">
+                    <div class="gallery-overlay">
+                        <h3>Evolução Contínua</h3>
+                        <p>Acompanhamento e melhorias constantes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cases -->
+    <section class="cases section-padding bg-light" id="cases">
+        <div class="container">
+            <div class="section-header">
+                <h2>Cases de Sucesso</h2>
+                <p>Resultados reais para empresas reais</p>
+            </div>
+            <div class="cases-grid">
+                <div class="case-card">
+                    <div class="case-logo">F</div>
+                    <h3>FinTech Startup</h3>
+                    <p class="case-result">300% de Crescimento</p>
+                    <blockquote>
+                        "Com o FSA, reduzimos 60% dos bugs em produção e escalamos nosso sistema para 10x mais usuários"
+                    </blockquote>
+                </div>
+                <div class="case-card">
+                    <div class="case-logo">V</div>
+                    <h3>Varejo Tradicional</h3>
+                    <p class="case-result">Transformação Digital</p>
+                    <blockquote>
+                        "Passamos de sistemas legados para arquitetura cloud-native em 6 meses, com zero downtime"
+                    </blockquote>
+                </div>
+                <div class="case-card">
+                    <div class="case-logo">H</div>
+                    <h3>HealthTech</h3>
+                    <p class="case-result">Conformidade e Segurança</p>
+                    <blockquote>
+                        "O FSA nos ajudou a atingir padrões de segurança HIPAA e reduzir 40% o tempo de desenvolvimento"
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta section-padding">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Pronto para elevar o nível técnico da sua equipe?</h2>
+                <p>Agende uma avaliação gratuita e descubra como podemos transformar sua arquitetura técnica</p>
+                <a href="#contact" class="btn-primary btn-large">Solicitar Consultoria</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact section-padding" id="contato">
+        <div class="container">
+            <div class="section-header">
+                <h2>Entre em Contato</h2>
+                <p>Estamos prontos para ajudar sua equipe técnica</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>contato@hubstry.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telefone</h4>
+                            <p>+55 (11) 99999-9999</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <div>
+                            <h4>Website</h4>
+                            <p>www.hubstry.com</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Seu Nome" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Seu Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Empresa">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Cargo">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Mensagem" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 4L28 28H4L16 4Z" stroke="#007BFF" stroke-width="2" stroke-linejoin="round"/>
+                                <circle cx="10" cy="10" r="3" fill="#007BFF"/>
+                                <circle cx="22" cy="10" r="3" fill="#28A745"/>
+                                <circle cx="10" cy="22" r="3" fill="#FD7E14"/>
+                                <circle cx="22" cy="22" r="3" fill="#6C757D"/>
+                            </svg>
+                        </div>
+                        <span class="logo-text">Hubstry</span>
+                    </div>
+                    <p class="footer-tagline">Connecting the layers of tech</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Produto</h4>
+                        <a href="#framework">Framework</a>
+                        <a href="#gallery">Galeria</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contato</h4>
+                        <a href="#contact">Fale Conosco</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hubstry. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
