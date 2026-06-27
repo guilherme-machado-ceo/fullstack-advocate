@@ -3,66 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Full Stack Advocate — Eixo Lusófono. Três vetores de expansão: Europa, África, Ásia. Uma arquitetura P²M².">
-    <title>FSA — Eixo Lusófono | Hubstry Deep Tech</title>
+    <meta name="description" content="Full Stack Advocate — Instância 01 da Arquitetura P²M². Regência transversal de engenharia, compliance, cybersecurity, PQC, AI safety, AI security e GRC de IA.">
+    <title>FSA — Full Stack Advocate | Hubstry Deep Tech</title>
     <style>
         :root {
             --bg: #0a0a0f;
             --bg-elevated: #12121a;
+            --bg-card: #0e0e16;
             --text: #e0e0e0;
             --text-muted: #6b7280;
             --accent-cyan: #00f0ff;
             --accent-green: #39ff14;
             --accent-magenta: #ff00aa;
+            --accent-gold: #ffd700;
             --border: #1f1f2e;
             --font-mono: 'Courier New', Courier, monospace;
             --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
             background-color: var(--bg);
             color: var(--text);
             font-family: var(--font-sans);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
-        /* Grid background effect */
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image:
+                linear-gradient(rgba(0, 240, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
             pointer-events: none;
             z-index: 0;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 24px;
             position: relative;
             z-index: 1;
         }
 
-        /* Header */
-        header {
-            padding: 24px 0;
-            border-bottom: 1px solid var(--border);
+        /* Language toggle */
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            padding: 6px 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .lang-btn.active {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+        .lang-btn:hover:not(.active) {
+            border-color: var(--text-muted);
+            color: var(--text);
         }
 
+        .lang-section { display: none; }
+        .lang-section.active { display: block; }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 16px 0;
+        }
         .nav {
             display: flex;
             justify-content: space-between;
@@ -70,257 +96,222 @@
             flex-wrap: wrap;
             gap: 12px;
         }
-
         .logo {
             font-family: var(--font-mono);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--accent-cyan);
             letter-spacing: 2px;
             text-transform: uppercase;
         }
-
-        .logo span {
-            color: var(--text-muted);
-        }
-
+        .logo span { color: var(--text-muted); }
+        .nav-right { display: flex; align-items: center; gap: 16px; }
         .nav-links {
             display: flex;
-            gap: 24px;
+            gap: 20px;
             list-style: none;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
         .nav-links a {
             color: var(--text-muted);
             text-decoration: none;
             transition: color 0.2s;
         }
-
-        .nav-links a:hover {
-            color: var(--accent-cyan);
-        }
+        .nav-links a:hover { color: var(--accent-cyan); }
 
         /* Hero */
         .hero {
-            padding: 100px 0 80px;
+            padding: 140px 0 80px;
             text-align: center;
-            position: relative;
+            border-bottom: 1px solid var(--border);
         }
-
         .hero-tag {
             font-family: var(--font-mono);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--accent-green);
             letter-spacing: 3px;
             text-transform: uppercase;
             margin-bottom: 24px;
             display: inline-block;
             border: 1px solid var(--accent-green);
-            padding: 6px 16px;
+            padding: 6px 18px;
             border-radius: 2px;
         }
-
         .hero h1 {
-            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 24px;
             letter-spacing: -1px;
         }
-
         .hero h1 .highlight {
             color: var(--accent-cyan);
-            text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            text-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
         }
-
         .hero-sub {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: var(--text-muted);
             max-width: 700px;
-            margin: 0 auto 40px;
+            margin: 0 auto 32px;
         }
-
         .hero-meta {
             font-family: var(--font-mono);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
             letter-spacing: 1px;
         }
-
-        .hero-meta span {
-            color: var(--accent-cyan);
-        }
-
-        /* Vectors visualization */
-        .vectors {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin: 60px 0;
-        }
-
-        .vector-card {
-            background: var(--bg-elevated);
-            border: 1px solid var(--border);
-            padding: 40px 32px;
-            position: relative;
-            overflow: hidden;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-
-        .vector-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green));
-            opacity: 0.5;
-            transition: opacity 0.3s;
-        }
-
-        .vector-card:hover {
-            border-color: var(--accent-cyan);
-            transform: translateY(-4px);
-        }
-
-        .vector-card:hover::before {
-            opacity: 1;
-        }
-
-        .vector-number {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            color: var(--accent-magenta);
-            margin-bottom: 16px;
-            letter-spacing: 2px;
-        }
-
-        .vector-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--text);
-        }
-
-        .vector-sub {
-            font-size: 0.9rem;
-            color: var(--accent-cyan);
-            margin-bottom: 16px;
-            font-family: var(--font-mono);
-        }
-
-        .vector-desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
-
-        .vector-tags {
-            margin-top: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .tag {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            padding: 4px 10px;
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            border-radius: 2px;
-        }
+        .hero-meta span { color: var(--accent-cyan); }
 
         /* Sections */
         section {
             padding: 80px 0;
-            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
-
         .section-header {
             font-family: var(--font-mono);
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--accent-green);
             letter-spacing: 3px;
             text-transform: uppercase;
             margin-bottom: 16px;
         }
-
         h2 {
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-size: clamp(1.4rem, 3vw, 2rem);
             font-weight: 600;
             margin-bottom: 24px;
             line-height: 1.3;
         }
-
-        h2 .accent {
-            color: var(--accent-cyan);
+        h2 .accent { color: var(--accent-cyan); }
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 32px 0 12px;
+            color: var(--text);
         }
-
         p {
             color: var(--text-muted);
             margin-bottom: 16px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.8;
         }
+        strong { color: var(--text); font-weight: 600; }
 
-        /* Architecture table */
+        /* Blockquote */
+        .quote-block {
+            border-left: 3px solid var(--accent-cyan);
+            padding: 20px 24px;
+            margin: 24px 0;
+            background: var(--bg-card);
+            font-style: italic;
+            color: var(--text-muted);
+        }
+        .quote-block .source {
+            display: block;
+            margin-top: 12px;
+            font-style: normal;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent-green);
+        }
+
+        /* Cards grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin: 32px 0;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 28px;
+            transition: border-color 0.3s;
+        }
+        .card:hover { border-color: var(--accent-cyan); }
+        .card-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .card-sub {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--accent-green);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* Table */
         .arch-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 40px 0;
-            font-size: 0.9rem;
+            margin: 32px 0;
+            font-size: 0.85rem;
         }
-
         .arch-table th {
             text-align: left;
-            padding: 16px;
+            padding: 14px;
             border-bottom: 1px solid var(--border);
             color: var(--accent-cyan);
             font-family: var(--font-mono);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 400;
         }
-
         .arch-table td {
-            padding: 16px;
+            padding: 14px;
             border-bottom: 1px solid var(--border);
             color: var(--text-muted);
+            vertical-align: top;
         }
-
         .arch-table td:first-child {
             color: var(--text);
             font-weight: 500;
-            width: 20%;
+            width: 18%;
         }
-
         .arch-table td:nth-child(2) {
             font-family: var(--font-mono);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--accent-green);
-            width: 15%;
+            width: 14%;
         }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            padding: 3px 10px;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        .badge.active { border-color: var(--accent-green); color: var(--accent-green); }
+        .badge.pending { border-color: var(--accent-gold); color: var(--accent-gold); }
+        .badge.regulatory { border-color: var(--accent-magenta); color: var(--accent-magenta); }
 
         /* EBITTDA block */
         .ebitda-block {
-            background: var(--bg-elevated);
+            background: var(--bg-card);
             border: 1px solid var(--border);
-            padding: 48px;
-            margin: 40px 0;
+            padding: 40px;
+            margin: 32px 0;
             position: relative;
         }
-
         .ebitda-block::before {
             content: 'EBITTDA';
             position: absolute;
             top: -12px;
-            left: 48px;
+            left: 40px;
             background: var(--bg);
             padding: 0 16px;
             font-family: var(--font-mono);
@@ -328,57 +319,69 @@
             color: var(--accent-magenta);
             letter-spacing: 2px;
         }
-
         .ebitda-formula {
             font-family: var(--font-mono);
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text);
-            margin: 24px 0;
-            padding: 20px;
+            margin: 20px 0;
+            padding: 16px;
             border-left: 3px solid var(--accent-magenta);
-            background: rgba(255, 0, 170, 0.05);
+            background: rgba(255, 0, 170, 0.04);
         }
-
         .ebitda-formula .token {
             color: var(--accent-magenta);
             font-weight: bold;
         }
 
-        /* Omnichannel */
+        /* Problem list */
+        .problem-list {
+            margin: 20px 0 20px 20px;
+            padding-left: 20px;
+            border-left: 2px solid var(--border);
+        }
+        .problem-list li {
+            margin-bottom: 16px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            list-style: none;
+            position: relative;
+        }
+        .problem-list li::before {
+            content: '›';
+            position: absolute;
+            left: -20px;
+            color: var(--accent-magenta);
+            font-weight: bold;
+        }
+
+        /* Channels */
         .channels {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
-            margin-top: 40px;
+            margin-top: 32px;
         }
-
         .channel {
-            background: var(--bg-elevated);
+            background: var(--bg-card);
             border: 1px solid var(--border);
             padding: 24px;
             text-align: center;
             transition: all 0.3s;
         }
-
-        .channel:hover {
-            border-color: var(--accent-green);
-        }
-
+        .channel:hover { border-color: var(--accent-green); }
         .channel-name {
             font-family: var(--font-mono);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--accent-cyan);
             margin-bottom: 8px;
         }
-
         .channel-url {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
             word-break: break-all;
         }
-
         .channel-status {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: var(--accent-green);
             margin-top: 8px;
             font-family: var(--font-mono);
@@ -386,11 +389,9 @@
 
         /* Footer */
         footer {
-            border-top: 1px solid var(--border);
             padding: 60px 0 40px;
             text-align: center;
         }
-
         .footer-brand {
             font-family: var(--font-mono);
             font-size: 0.8rem;
@@ -398,59 +399,42 @@
             margin-bottom: 16px;
             letter-spacing: 2px;
         }
-
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 32px;
+            gap: 28px;
             margin-bottom: 24px;
             flex-wrap: wrap;
         }
-
         .footer-links a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             transition: color 0.2s;
         }
-
-        .footer-links a:hover {
-            color: var(--accent-cyan);
-        }
-
+        .footer-links a:hover { color: var(--accent-cyan); }
         .footer-copy {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
             font-family: var(--font-mono);
         }
-
         .footer-epigraph {
             margin-top: 32px;
             font-style: italic;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             border-top: 1px solid var(--border);
             padding-top: 24px;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero {
-                padding: 60px 0 40px;
-            }
-
-            section {
-                padding: 50px 0;
-            }
-
-            .ebitda-block {
-                padding: 32px 24px;
-            }
-
-            .nav-links {
-                gap: 16px;
-                font-size: 0.7rem;
-            }
+            .hero { padding: 120px 0 50px; }
+            section { padding: 50px 0; }
+            .nav-links { display: none; }
+            .ebitda-block { padding: 28px 20px; }
+            .arch-table { font-size: 0.8rem; }
+            .arch-table td { padding: 10px; }
         }
     </style>
 <base target="_blank">
@@ -461,253 +445,961 @@
     <div class="container">
         <div class="nav">
             <div class="logo">Hubstry <span>//</span> FSA</div>
-            <ul class="nav-links">
-                <li><a href="#eixo">Eixo</a></li>
-                <li><a href="#vetores">Vetores</a></li>
-                <li><a href="#arquitetura">P²M²</a></li>
-                <li><a href="#regencia">Regência</a></li>
-            </ul>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#tese">Tese</a></li>
+                    <li><a href="#arquitetura">P²M²</a></li>
+                    <li><a href="#campos">Campos</a></li>
+                    <li><a href="#ebitda">EBITTDA</a></li>
+                    <li><a href="#eixo">Eixo</a></li>
+                </ul>
+                <button class="lang-btn active" id="btn-pt" onclick="setLang('pt')">PT</button>
+                <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+            </div>
         </div>
     </div>
 </header>
 
 <main>
-    <!-- Hero -->
-    <section class="hero" style="border-top: none;">
-        <div class="container">
-            <div class="hero-tag">Instância 01 da Arquitetura P²M²</div>
-            <h1>
-                Eixo Lusófono.<br>
-                <span class="highlight">Três Vetores.</span><br>
-                Uma Arquitetura.
-            </h1>
-            <p class="hero-sub">
-                Full Stack Advocate operando a partir do eixo Brasil–Portugal. 
-                Mesma arquitetura técnica, múltiplos timings regulatórios, 
-                três vetores civilizacionais.
-            </p>
-            <div class="hero-meta">
-                <span>Rio de Janeiro</span> · São Paulo · Lisboa · Porto · Macau
+
+<!-- ==================== PORTUGUÊS ==================== -->
+<div id="lang-pt" class="lang-section active">
+
+<!-- Hero -->
+<section class="hero" style="border-bottom:1px solid var(--border);">
+    <div class="container">
+        <div class="hero-tag">Instância 01 da Arquitetura P²M²</div>
+        <h1>
+            Full Stack Advocate.<br>
+            <span class="highlight">Regência Transversal.</span>
+        </h1>
+        <p class="hero-sub">
+            Sete campos antes operados em silos — engenharia, compliance, cybersecurity, 
+            PQC, AI safety, AI security e GRC de IA — reunidos sob uma arquitetura de regência. 
+            Operando no eixo lusófono Brasil–Portugal com três vetores civilizacionais.
+        </p>
+        <div class="hero-meta">
+            <span>Rio de Janeiro</span> · São Paulo · Lisboa · Porto · Macau
+        </div>
+    </div>
+</section>
+
+<!-- Diagnóstico -->
+<section id="tese">
+    <div class="container">
+        <div class="section-header">Diagnóstico do Zeitgeist</div>
+        <h2>Por que especialistas verticais <span class="accent">não bastam mais</span></h2>
+        <p>
+            O profissional contemporâneo não é o especialista vertical nem o generalista superficial. 
+            É o <strong>regente de pipelines de conhecimento</strong> — quem conduz fluxos heterogêneos 
+            de saberes, técnicas e ferramentas dentro de uma arquitetura de ecossistema.
+        </p>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">Velocidade como Constante</div>
+                <div class="card-desc">Crises se sobrepõem: pandemia, transformação digital, reordenamento geopolítico, emergência da IA generativa em escala industrial. Instabilidade é a regra.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Obsolescência do Especialista</div>
+                <div class="card-desc">Quem domina apenas um silo perde relevância. Movimento detectado em todas as funções C-level: CFO, CIO, CCO, CISO.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Learn-it-all</div>
+                <div class="card-desc">O ethos profissional contemporâneo substitui o know-it-all pelo learn-it-all. Lifelong learning como exigência, não opção.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Retorno da Bildung</div>
+                <div class="card-desc">Formação humana integral, não treinamento técnico. Sete campos antes separados agora exigem operação conjunta.</div>
             </div>
         </div>
-    </section>
+        <div class="quote-block">
+            "O profissional do zeitgeist atual não é o especialista vertical nem o generalista superficial. 
+            É o regente de pipelines de conhecimento, saberes, técnicas e ferramentas, 
+            operando em fluxo contínuo, cíclico e dinâmico, dentro de arquitetura de ecossistema."
+        </div>
+    </div>
+</section>
 
-    <!-- Vectors -->
-    <section id="vetores" style="border-top: none; padding-top: 0;">
-        <div class="container">
-            <div class="vectors">
-                <div class="vector-card">
-                    <div class="vector-number">VETOR 01</div>
-                    <div class="vector-title">Europa</div>
-                    <div class="vector-sub">via Portugal</div>
-                    <div class="vector-desc">
-                        Porta para a União Europeia sob NIS2 e EU AI Act. 
-                        Extensão ao EEA (Noruega, Islândia) e ao Reino Unido pós-Brexit. 
-                        Portugal como hub regulatório lusófono para compliance digital europeu.
-                    </div>
-                    <div class="vector-tags">
-                        <span class="tag">NIS2</span>
-                        <span class="tag">EU AI Act</span>
-                        <span class="tag">EEA</span>
-                        <span class="tag">UK</span>
-                    </div>
+<!-- Evidências -->
+<section>
+    <div class="container">
+        <div class="section-header">Evidências Convergentes</div>
+        <h2>Quatro fontes que descrevem <span class="accent">o mesmo fenômeno</span></h2>
+        <p>
+            Cada uma dessas fontes, em domínio distinto, descreve a transição do especialista vertical 
+            para o regente de pipelines. Nenhuma delas nomeia o fenômeno. P²M² preenche esse gap.
+        </p>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-sub">SAP CONCUR · 2022</div>
+                <div class="card-title">Percepções do CFO Moderno</div>
+                <div class="card-desc">Dez CFOs brasileiros descrevem, em primeira pessoa, a transição do controller para o regente financeiro. Carlos Alberto Piazza nomeia "profissionais polímatas" como exigência. Vivianne Valente (Tigre) nomeia "ambidestria" como competência central.</div>
+            </div>
+            <div class="card">
+                <div class="card-sub">DONNA BOEHME</div>
+                <div class="card-title">Compliance is Not a Legal Function</div>
+                <div class="card-desc">Compliance ≠ função jurídica. É função multidisciplinar de governança, risco, controle, cultura, ética — e observabilidade técnica. O mesmo movimento epistêmico que o eBook SAP Concur descreve em finanças, Boehme descreve em compliance.</div>
+            </div>
+            <div class="card">
+                <div class="card-sub">FSA · AGOSTO/2024</div>
+                <div class="card-title">Prior Art Metodológico</div>
+                <div class="card-desc">O repositório <code>fullstack-advocate</code> posiciona-se como "cérebro técnico" que conecta camadas, defende eliminação de silos via fluxos unificados, propõe regência como categoria operativa. Anterioridade documentada de dois anos.</div>
+            </div>
+            <div class="card">
+                <div class="card-sub">CUSTOS DE TOKENS · 2026</div>
+                <div class="card-title">Realidade Material Ignorada</div>
+                <div class="card-desc">Em junho/2026, custos de tokens (compute de inferência LLM, embeddings, agentes) são linha de custo nova, imprevisível, não-auditável e sem governança clara. Empresas operam sob métrica que não lê parte material de sua estrutura de custo.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Arquitetura -->
+<section id="arquitetura">
+    <div class="container">
+        <div class="section-header">Arquitetura</div>
+        <h2>P²M² — <span class="accent">Stack Profissional em Quatro Camadas</span></h2>
+        <p>
+            Ordem do epistêmico ao operacional. Cada camada inferior sustenta a superior. 
+            Sem polimatia, a poliglossia vira coleção de habilidades desconectadas. 
+            Sem poliglossia, a multicloud vira infraestrutura sem propósito. 
+            Sem multicloud, a multiagência fica refém de provider único. 
+            Sem multiagência, as três camadas anteriores ficam sem alavanca de execução.
+        </p>
+        <table class="arch-table">
+            <thead>
+                <tr><th>Camada</th><th>Domínio</th><th>Operação</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Polímata</td>
+                    <td>Cognitiva</td>
+                    <td>Domínio simultâneo de múltiplas áreas sem hierarquia rígida. Engenharia, compliance, cyber, AI safety e GRC operados como camadas de um mesmo ecossistema.</td>
+                </tr>
+                <tr>
+                    <td>Poliglota</td>
+                    <td>Semiótica</td>
+                    <td>Português, inglês, chinês (Macau); linguagens jurídicas de civil law (UE, Brasil, Macau); linguagens técnicas (HTTP, SQL, IaC, RDF, OWL).</td>
+                </tr>
+                <tr>
+                    <td>Multicloud</td>
+                    <td>Infraestrutural</td>
+                    <td>Independência de provider: AWS, Azure, GCP, Magalu Cloud, Hetzner, on-premise quando soberania digital exige.</td>
+                </tr>
+                <tr>
+                    <td>Multiagente</td>
+                    <td>Executória</td>
+                    <td>Pipelines CI/CD, orquestração de agentes autônomos, automação de compliance transversal, MCP (Model Context Protocol).</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Implicações Disciplinares</h3>
+        <p>
+            P²M² reescreve as funções tradicionais: o CFO deixa de ser controller para ser regente financeiro; 
+            o Compliance Officer deixa de ser intérprete de norma para ser regente de governança multidisciplinar; 
+            o CISO deixa de ser defensor de perímetro para ser regente de risco cibernético integrado a AI safety e PQC; 
+            o desenvolvedor full-stack deixa de ser executor multi-camada para ser defensor sistêmico. 
+            Cada função, sob P²M², deixa de ser silo e passa a ser camada de uma regência mais ampla.
+        </p>
+    </div>
+</section>
+
+<!-- Regência -->
+<section>
+    <div class="container">
+        <div class="section-header">Categoria Operativa</div>
+        <h2>Regência — <span class="accent">Condução de Fluxos Heterogêneos</span></h2>
+        <p>
+            Regência não é metáfora. Em português, carrega três sentidos simultâneos que "orchestration" em inglês 
+            não alcança — perde o lastro gramatical-estrutural e o político-delegativo.
+        </p>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-sub">MUSICAL</div>
+                <div class="card-title">Condução de Orquestra</div>
+                <div class="card-desc">O maestro não toca instrumentos. Coordena tempo, dinâmica e articulação entre executantes. O regente técnico não escreve código em todas as camadas — coordena a arquitetura entre elas.</div>
+            </div>
+            <div class="card">
+                <div class="card-sub">GRAMATICAL</div>
+                <div class="card-title">Governança Sintática</div>
+                <div class="card-desc">Regência gramatical governa as relações entre termos em uma oração. O regente de pipelines governa as relações entre camadas, ferramentas e agentes em uma arquitetura.</div>
+            </div>
+            <div class="card">
+                <div class="card-sub">POLÍTICA</div>
+                <div class="card-title">Autoridade Delegada</div>
+                <div class="card-desc">O regente político decide em nome do conjunto. O regente técnico tem autoridade delegada para definir padrões, aprovar arquiteturas e auditar conformidade em nome da organização.</div>
+            </div>
+        </div>
+        <div class="quote-block">
+            "O regente de pipelines de conhecimento conduz fluxos heterogêneos (saberes, técnicas, ferramentas, agentes) 
+            dentro de uma arquitetura de ecossistema, garantindo coerência sintática, coordenação temporal 
+            e autoridade delegada para decidir em nome do conjunto."
+        </div>
+    </div>
+</section>
+
+<!-- 7 Campos -->
+<section id="campos">
+    <div class="container">
+        <div class="section-header">Integrador Transversal</div>
+        <h2>Os Sete Campos que o FSA <span class="accent">Conecta</span></h2>
+        <p>
+            Não basta listar sete campos. A tese do FSA é que esses campos <strong>já não podem ser operados em silos</strong> 
+            na PME contemporânea. Os motivos são técnicos, regulatórios e econômicos.
+        </p>
+        <p>
+            <strong>Motivo técnico:</strong> uma vulnerabilidade em 2026 não é "ou cyber, ou AI security, ou compliance". 
+            É as três coisas ao mesmo tempo. Um agente LLM com acesso a sistemas internos sofre prompt injection (AI security), 
+            que dispara ação não-autorizada (compliance), que vaza dado pessoal (LGPD/RGPD, cyber). O incidente atravessa três disciplinas; a defesa também precisa atravessá-las.
+        </p>
+        <p>
+            <strong>Motivo regulatório:</strong> EU AI Act, NIS2, RGPD, LGPD, ISO/IEC 42001 — todos têm requisitos sobrepostos. 
+            Uma empresa com três fornecedores diferentes para três regulações paga triplicado, com risco de inconsistência. O FSA opera o conjunto.
+        </p>
+        <p>
+            <strong>Motivo econômico:</strong> PMEs no Brasil e em Portugal não conseguem contratar separadamente CTO, CISO, 
+            AI Safety Officer, Compliance Officer técnico e consultor de PQC. O preço somado é proibitivo. 
+            O FSA oferece regência transversal a fração do custo da soma.
+        </p>
+        <div class="cards-grid" style="margin-top:40px;">
+            <div class="card">
+                <div class="card-title">1. Engenharia Full-Stack <span class="badge active">ATIVO</span></div>
+                <div class="card-desc">Frontend, backend, infraestrutura, DevOps. Escopo original desde agosto/2024. React, Next.js, Node.js, Python, AWS, Docker, Kubernetes, CI/CD.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">2. Compliance Técnico-Operacional <span class="badge active">EXPANSÃO</span></div>
+                <div class="card-desc">Observabilidade, auditabilidade, conformidade de pipelines de dados, evidência técnica para auditoria. ISO 27001, 27701, SOC 2.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">3. Cybersecurity <span class="badge active">EXPANSÃO</span></div>
+                <div class="card-desc">Perímetro, identidade, criptografia clássica, gestão de vulnerabilidades, response. SIEM/SOAR, DevSecOps, SAST/DAST.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">4. PQC <span class="badge regulatory">REGULATÓRIO 2026</span></div>
+                <div class="card-desc">Post-Quantum Cryptography. Inventário criptográfico, crypto-agility, planejamento de migração algorítmica. Kyber, Dilithium, SPHINCS+. Tema regulatório nos EUA, UE e Brasil.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">5. AI Safety <span class="badge active">CAMPO AUTÔNOMO</span></div>
+                <div class="card-desc">Alinhamento, interpretabilidade, robustez, controlabilidade, red-teaming, evaluation aplicados a sistemas em produção. HELM, BIG-bench, Anthropic Inspect.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">6. AI Security <span class="badge active">SUBCAMPO</span></div>
+                <div class="card-desc">Security aplicada a sistemas de IA: adversarial robustness, prompt injection, model theft, training data poisoning, supply chain de modelos. Lakera Guard, NeMo Guardrails.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">7. GRC de IA <span class="badge regulatory">REGULATÓRIO</span></div>
+                <div class="card-desc">Governança, Risco e Compliance de IA. ISO/IEC 42001:2023, NIST AI RMF, EU AI Act, PL 2338/2023. Model Cards, Datasheets, AI Incident Database.</div>
+            </div>
+        </div>
+        <h3 style="margin-top:48px;">Ponte Business ↔ Tecnologia</h3>
+        <p>
+            A oitava função do FSA é a fronteira onde o CFO precisa entender custo de tokens, gastos de compute, 
+            riscos de fornecedor, exposição cambial em cloud — e o time técnico precisa entender margem operacional, 
+            EBITDA e governança financeira. Exemplificada paradigmaticamente pelo <strong>EBITTDA</strong>.
+        </p>
+    </div>
+</section>
+
+<!-- EBITTDA -->
+<section id="ebitda">
+    <div class="container">
+        <div class="section-header">Métrica de Fronteira</div>
+        <h2>EBITTDA — <span class="accent">O Segundo T é Tokens</span></h2>
+        <p>
+            Em 2026, empresas que adotaram IA generativa em escala têm linha de custo nova — tokens — 
+            que não está mapeada em nenhuma régua tradicional. Esses custos têm três características 
+            que escapam ao planejamento financeiro:
+        </p>
+        <ul class="problem-list">
+            <li><strong>Imprevisibilidade</strong> — variam por uso, não por contrato fixo. Picos súbitos são comuns.</li>
+            <li><strong>Não-auditabilidade</strong> — registros distribuídos entre múltiplos providers, formatos heterogêneos, ausência de padrão contábil de classificação.</li>
+            <li><strong>Ausência de governança</strong> — nenhuma área tradicional (financeiro, TI, jurídico, compliance) tem mandato claro sobre eles.</li>
+        </ul>
+        <p>
+            <strong>A consequência:</strong> CFOs descobrem buracos no orçamento. CISOs descobrem exfiltração de dados via APIs de LLM. 
+            Compliance descobre processamento de dados sensíveis em jurisdições não-conformes. Cada um descobre a partir de seu silo. 
+            <strong>Ninguém vê o conjunto.</strong>
+        </p>
+        <div class="ebitda-block">
+            <div class="ebitda-formula">
+                Earnings Before Interest, Taxes, <span class="token">Tokens</span>, Depreciation and Amortization
+            </div>
+            <p>
+                O EBITTDA internaliza o custo de tokens como linha auditável, com <strong>rastreabilidade técnica</strong> 
+                (que agente gastou quanto, em qual operação, sob qual política), <strong>conformidade verificável</strong> 
+                (qual dado foi enviado para qual provider, sob qual base legal) e <strong>governança clara</strong> 
+                (quem aprova aumentos de orçamento, quem define limites por agente, quem audita).
+            </p>
+            <p>
+                O EBITTDA, portanto, <em>é</em> o FSA em escala reduzida: um conceito de fronteira que só faz sentido 
+                se você opera nos sete campos simultaneamente. Um CFO sozinho não chega lá. Um engenheiro sozinho não chega lá. 
+                Um <strong>regente</strong> chega.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Gonçalves et Alii -->
+<section>
+    <div class="container">
+        <div class="section-header">Instância Irmã</div>
+        <h2>Gonçalves et Alii — <span class="accent">Full Stack Legal Advocate</span></h2>
+        <p>
+            FSA e Gonçalves et Alii são <strong>instâncias irmãs</strong> da arquitetura P²M², com sobreposição na camada compliance 
+            e interfaces explícitas de handoff. Cada uma autônoma, cada uma com sua marca, com projetos conjuntos quando o cliente precisa de ambas.
+        </p>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-sub">FSA · INSTÂNCIA 01</div>
+                <div class="card-title">Lado Técnico-Operacional</div>
+                <div class="card-desc">Instrumentação, métricas, auditoria técnica, evidência de conformidade, arquitetura de sistemas em conformidade. Regência dos sete campos técnicos.</div>
+            </div>
+            <div class="card">
+                <div class="card-sub">GONÇALVES ET ALII · INSTÂNCIA 02</div>
+                <div class="card-title">Lado Jurídico-Regulatório</div>
+                <div class="card-desc">Arquitetura jurídica de operações complexas, parecer, contratos, regulatório, due diligence jurídica, defesa em fiscalização. Conecta direito, dados, governança e operação.</div>
+            </div>
+        </div>
+        <p style="margin-top:24px;">
+            <strong>Handoff:</strong> cliente que entra pelo FSA com problema técnico que envolve risco jurídico → Gonçalves et Alii é acionada para a parte jurídica. 
+            Cliente que entra pela Gonçalves et Alii com problema jurídico que envolve implementação técnica → FSA é acionado para a parte técnica. 
+            Projetos conjuntos: implementação de programa de compliance de IA, auditoria de fornecedor crítico, preparação para fiscalização EU AI Act.
+        </p>
+        <p>
+            <a href="https://goncalvesetalii.github.io" target="_blank" style="color:var(--accent-cyan);text-decoration:none;font-family:var(--font-mono);font-size:0.8rem;">→ goncalvesetalii.github.io</a>
+        </p>
+    </div>
+</section>
+
+<!-- Outras Instâncias -->
+<section>
+    <div class="container">
+        <div class="section-header">Pipeline</div>
+        <h2>Outras Instâncias <span class="accent">em Maturação</span></h2>
+        <p>
+            Verticais candidatas à aplicação da arquitetura P²M². Critérios: domínio sob transformação digital, 
+            silo profissional dominante, mercado disposto a pagar por regência, paralelismo metodológico com FSA.
+        </p>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">Full Stack Governance Advocate</div>
+                <div class="card-desc">Governança corporativa, conselhos, ESG. Regência de pipelines de decisão estratégica.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Full Stack Risk Advocate</div>
+                <div class="card-desc">Gestão integrada de risco operacional, cibernético, climático e geopolítico.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Full Stack Data Advocate</div>
+                <div class="card-desc">Orquestração de dados em organizações sem CDO formal. Arquitetura de dados como regência.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Full Stack Innovation Advocate</div>
+                <div class="card-desc">Regência de pipelines de inovação em corporações tradicionais. Conexão entre R&D e operação.</div>
+            </div>
+        </div>
+        <p style="margin-top:24px;font-size:0.85rem;font-style:italic;">
+            Princípio de não-fragmentação prematura: manter todas as instâncias documentadas neste framework 
+            até que uma vertical amadureça a ponto de justificar repositório próprio e marca autônoma.
+        </p>
+    </div>
+</section>
+
+<!-- Artefatos -->
+<section>
+    <div class="container">
+        <div class="section-header">Produção</div>
+        <h2>Artefatos Derivados <span class="accent">em Andamento</span></h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">README Reposicionado <span class="badge active">EM DESENVOLVIMENTO</span></div>
+                <div class="card-desc">Atualização do repositório FSA para refletir o reposicionamento como integrador transversal. GitHub + GitLab.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Paper Zenodo <span class="badge pending">Q3/2026</span></div>
+                <div class="card-desc">"Full Stack Advocacy: arquitetura P²M² aplicada à integração transversal de engenharia, compliance, segurança e governança de IA." Licença CC BY-NC-SA 4.0.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Position Paper Overall 720° <span class="badge pending">RASCUNHO</span></div>
+                <div class="card-desc">4-6 páginas. Voz editorial analítica, fria, acionável. Diagnóstico do zeitgeist, P²M² como arquitetura, regência como categoria, implicações para PMEs lusófonas.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Posts LinkedIn <span class="badge active">DERIVÁVEIS</span></div>
+                <div class="card-desc">Trechos extraíveis do framework. 800-1200 caracteres. Tom analítico, sem hashtags excessivas.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Operacional -->
+<section>
+    <div class="container">
+        <div class="section-header">Status</div>
+        <h2>Operacional <span class="accent">· Onde Estamos</span></h2>
+        <table class="arch-table">
+            <thead>
+                <tr><th>Ativo</th><th>Status</th><th>URL / Local</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Repositório GitHub</td><td style="color:var(--accent-green)">ATIVO</td><td>github.com/guilherme-machado-ceo/fullstack-advocate</td></tr>
+                <tr><td>GitLab Pages</td><td style="color:var(--accent-green)">ATIVO</td><td>hubstry-group.gitlab.io/fullstack-advocate</td></tr>
+                <tr><td>GitHub Pages (este site)</td><td style="color:var(--accent-green)">DEPLOYADO</td><td>guilherme-machado-ceo.github.io/fullstack-advocate</td></tr>
+                <tr><td>AWS S3</td><td style="color:var(--accent-gold)">LEGADO</td><td>s3://fullstack-advocate-landing</td></tr>
+                <tr><td>Bitbucket</td><td style="color:var(--accent-gold)">PENDING</td><td>Em configuração</td></tr>
+                <tr><td>Landing Cyber Noir</td><td style="color:var(--accent-gold)">PENDENTE</td><td>advocate.hubstry.dev</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Eixo Lusófono -->
+<section id="eixo">
+    <div class="container">
+        <div class="section-header">Geopolítica Regulatória</div>
+        <h2>Eixo Lusófono — <span class="accent">Três Vetores Civilizacionais</span></h2>
+        <p>
+            Hubstry sediada no Rio de Janeiro. FSA operando a partir do eixo Brasil–Portugal. 
+            Mesma arquitetura técnica, múltiplos timings regulatórios, três vetores de expansão.
+        </p>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-sub">VETOR 01 · EUROPA</div>
+                <div class="card-title">via Portugal</div>
+                <div class="card-desc">Porta para UE sob NIS2 (Diretiva 2022/2555) e EU AI Act (Regulamento 2024/1689). Extensão ao EEA (Noruega, Islândia, Liechtenstein) e Reino Unido pós-Brexit.</div>
+                <div class="vector-tags" style="margin-top:12px;">
+                    <span class="badge" style="border-color:var(--accent-magenta);color:var(--accent-magenta)">NIS2</span>
+                    <span class="badge" style="border-color:var(--accent-magenta);color:var(--accent-magenta)">EU AI Act</span>
                 </div>
-
-                <div class="vector-card">
-                    <div class="vector-number">VETOR 02</div>
-                    <div class="vector-title">África</div>
-                    <div class="vector-sub">via Brasil e Portugal</div>
-                    <div class="vector-desc">
-                        Porta para PALOP (Angola, Moçambique, Cabo Verde, Guiné-Bissau, 
-                        São Tomé e Príncipe) via CPLP. Vetor adicional via BRICS 
-                        para cooperação tecnológica Brasil–África.
-                    </div>
-                    <div class="vector-tags">
-                        <span class="tag">PALOP</span>
-                        <span class="tag">CPLP</span>
-                        <span class="tag">BRICS+</span>
-                    </div>
+            </div>
+            <div class="card">
+                <div class="card-sub">VETOR 02 · ÁFRICA</div>
+                <div class="card-title">via Brasil e Portugal</div>
+                <div class="card-desc">Porta para PALOP (Angola, Moçambique, Cabo Verde, Guiné-Bissau, São Tomé e Príncipe) via CPLP. Vetor adicional via BRICS+ para cooperação tecnológica Brasil–África.</div>
+                <div class="vector-tags" style="margin-top:12px;">
+                    <span class="badge" style="border-color:var(--accent-gold);color:var(--accent-gold)">PALOP</span>
+                    <span class="badge" style="border-color:var(--accent-gold);color:var(--accent-gold)">CPLP</span>
+                    <span class="badge" style="border-color:var(--accent-gold);color:var(--accent-gold)">BRICS+</span>
                 </div>
-
-                <div class="vector-card">
-                    <div class="vector-number">VETOR 03</div>
-                    <div class="vector-title">Ásia</div>
-                    <div class="vector-sub">via Macau</div>
-                    <div class="vector-desc">
-                        Porta institucional para China através do Fórum Macau 
-                        (Fórum de Cooperação China–Países de Língua Portuguesa). 
-                        Macau como SAR com sistema jurídico lusófono e ponte 
-                        para mercado chinês desde 2003.
-                    </div>
-                    <div class="vector-tags">
-                        <span class="tag">Fórum Macau</span>
-                        <span class="tag">SAR</span>
-                        <span class="tag">CPLP</span>
-                    </div>
+            </div>
+            <div class="card">
+                <div class="card-sub">VETOR 03 · ÁSIA</div>
+                <div class="card-title">via Macau</div>
+                <div class="card-desc">Porta institucional para China através do Fórum Macau (Fórum de Cooperação China–Países de Língua Portuguesa, ativo desde 2003). Macau como SAR com sistema jurídico lusófono.</div>
+                <div class="vector-tags" style="margin-top:12px;">
+                    <span class="badge" style="border-color:var(--accent-cyan);color:var(--accent-cyan)">Fórum Macau</span>
+                    <span class="badge" style="border-color:var(--accent-cyan);color:var(--accent-cyan)">SAR</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Eixo -->
-    <section id="eixo">
-        <div class="container">
-            <div class="section-header">Posicionamento</div>
-            <h2>Hubstry sediada no Rio de Janeiro.<br>
-                <span class="accent">FSA operando no eixo lusófono.</span>
-            </h2>
-            <p>
-                A arquitetura P²M² (Polímata, Poliglota, Multicloud, Multiagente) 
-                não reconhece fronteiras técnicas. Mas reconhece timing regulatório. 
-                Cada vetor civilizacional opera sob regime normativo distinto — 
-                e a mesma arquitetura de regência se adapta a cada um.
-            </p>
-            <p>
-                No Brasil, a ANPD consolida a LGPD e o PL 2338/2023 avança 
-                sobre governança de IA. Em Portugal, o NIS2 já transposto e 
-                o EU AI Act entra em fases de implementação. Em Angola e 
-                Moçambique, a infraestrutura digital cresce sob olhar da CPLP. 
-                Em Macau, o Fórum de Cooperação reúne dezessete anos de 
-                diálogo institucional China–Lusofonia.
-            </p>
-            <p>
-                O FSA não escolhe um mercado. Opera a <strong>regência</strong> 
-                entre todos — conectando engenharia, compliance, cybersecurity, 
-                PQC, AI safety, AI security e GRC de IA ao timing regulatório 
-                de cada jurisdição.
-            </p>
-        </div>
-    </section>
-
-    <!-- Architecture -->
-    <section id="arquitetura">
-        <div class="container">
-            <div class="section-header">Arquitetura</div>
-            <h2>P²M² — <span class="accent">Stack Profissional em Quatro Camadas</span></h2>
-            <p>
-                A arquitetura que sustenta os três vetores. Cada camada 
-                inferior sustenta a superior. Do epistêmico ao operacional.
-            </p>
-
-            <table class="arch-table">
-                <thead>
-                    <tr>
-                        <th>Camada</th>
-                        <th>Domínio</th>
-                        <th>Operação nos Vetores</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Polímata</td>
-                        <td>Cognitiva</td>
-                        <td>Domínio simultâneo de engenharia, compliance, cyber, AI safety e GRC — sem hierarquia rígida entre campos</td>
-                    </tr>
-                    <tr>
-                        <td>Poliglota</td>
-                        <td>Semiótica</td>
-                        <td>Português, inglês, chinês (Macau); linguagens jurídicas de civil law (UE, Brasil, Macau); linguagens técnicas (HTTP, SQL, IaC, RDF)</td>
-                    </tr>
-                    <tr>
-                        <td>Multicloud</td>
-                        <td>Infraestrutural</td>
-                        <td>Independência de provider em cada jurisdição: AWS, Azure, GCP, Magalu Cloud, Hetzner, on-premise quando soberania exige</td>
-                    </tr>
-                    <tr>
-                        <td>Multiagente</td>
-                        <td>Executória</td>
-                        <td>Pipelines CI/CD, orquestração de agentes autônomos, automação de compliance transversal, MCP (Model Context Protocol)</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <p style="font-size: 0.85rem; font-style: italic;">
-                Sem polimatia, a poliglossia vira coleção de habilidades desconectadas. 
-                Sem poliglossia, a multicloud vira infraestrutura sem propósito. 
-                Sem multicloud, a multiagência fica refém de provider único. 
-                Sem multiagência, as três camadas anteriores ficam sem alavanca de execução.
-            </p>
-        </div>
-    </section>
-
-    <!-- Regência / EBITTDA -->
-    <section id="regencia">
-        <div class="container">
-            <div class="section-header">Regência Transversal</div>
-            <h2>EBITTDA — <span class="accent">Métrica de Fronteira</span></h2>
-            <p>
-                O exemplo paradigmático do que o FSA faz nos três vetores. 
-                Em 2026, custos de tokens (compute de inferência LLM, embeddings, 
-                agentes autônomos) são realidade material em empresas que adotaram 
-                IA generativa em escala. Esses custos têm três características 
-                que escapam ao planejamento financeiro tradicional:
-            </p>
-            <p style="margin-left: 24px; border-left: 2px solid var(--border); padding-left: 16px;">
-                <strong>Imprevisibilidade</strong> — variam por uso, não por contrato fixo. 
-                Picos súbitos são comuns.<br><br>
-                <strong>Não-auditabilidade</strong> — registros distribuídos entre múltiplos 
-                providers, formatos heterogêneos, ausência de padrão contábil.<br><br>
-                <strong>Ausência de governança</strong> — nenhuma área tradicional 
-                (financeiro, TI, jurídico, compliance) tem mandato claro sobre eles.
-            </p>
-
-            <div class="ebitda-block">
-                <div class="ebitda-formula">
-                    Earnings Before Interest, Taxes, <span class="token">Tokens</span>, Depreciation and Amortization
-                </div>
-                <p>
-                    O segundo <strong>T</strong> internaliza o custo de tokens como 
-                    linha auditável, com rastreabilidade técnica (que agente gastou 
-                    quanto, em qual operação, sob qual política), conformidade 
-                    verificável (qual dado foi enviado para qual provider, sob 
-                    qual base legal) e governança clara (quem aprova, quem limita, 
-                    quem audita).
-                </p>
-                <p>
-                    O EBITTDA é o FSA em escala reduzida: um conceito de fronteira 
-                    que só faz sentido se você opera nos sete campos simultaneamente. 
-                    Um CFO sozinho não chega lá. Um engenheiro sozinho não chega lá. 
-                    Um <strong>regente</strong> chega.
-                </p>
+<!-- Omnichannel -->
+<section>
+    <div class="container">
+        <div class="section-header">Resiliência</div>
+        <h2>Omnichannel — <span class="accent">Múltiplas Plataformas, Mesmo Ativo</span></h2>
+        <p>
+            O ecossistema Hubstry distribui seus ativos digitais por múltiplas plataformas e infraestruturas. 
+            Resiliência, redundância e diversificação por nicho. Se uma falha, as outras permanecem. 
+            Learn-it-all, resiliência, redundância.
+        </p>
+        <div class="channels">
+            <div class="channel">
+                <div class="channel-name">GitLab Pages</div>
+                <div class="channel-url">hubstry-group.gitlab.io/fullstack-advocate</div>
+                <div class="channel-status">[ INSTÂNCIA PRINCIPAL ]</div>
+            </div>
+            <div class="channel">
+                <div class="channel-name">GitHub Pages</div>
+                <div class="channel-url">guilherme-machado-ceo.github.io/fullstack-advocate</div>
+                <div class="channel-status">[ INSTÂNCIA GEO ]</div>
+            </div>
+            <div class="channel">
+                <div class="channel-name">AWS S3</div>
+                <div class="channel-url">s3://fullstack-advocate-landing</div>
+                <div class="channel-status">[ ARQUIVO LEGADO ]</div>
+            </div>
+            <div class="channel">
+                <div class="channel-name">Bitbucket</div>
+                <div class="channel-url">Em configuração</div>
+                <div class="channel-status">[ PENDING ]</div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Omnichannel -->
-    <section>
-        <div class="container">
-            <div class="section-header">Resiliência de Ativos</div>
-            <h2>Omnichannel — <span class="accent">Múltiplas Plataformas, Mesmo Ativo</span></h2>
+</div>
+
+<!-- ==================== ENGLISH ==================== -->
+<div id="lang-en" class="lang-section">
+
+<!-- Hero EN -->
+<section class="hero" style="border-bottom:1px solid var(--border);">
+    <div class="container">
+        <div class="hero-tag">Instance 01 of the P²M² Architecture</div>
+        <h1>
+            Full Stack Advocate.<br>
+            <span class="highlight">Transversal Regency.</span>
+        </h1>
+        <p class="hero-sub">
+            Seven fields previously operated in silos — engineering, compliance, cybersecurity, 
+            PQC, AI safety, AI security and AI GRC — brought under a single regency architecture. 
+            Operating from the Lusophone axis Brazil–Portugal with three civilizational vectors.
+        </p>
+        <div class="hero-meta">
+            <span>Rio de Janeiro</span> · São Paulo · Lisbon · Porto · Macau
+        </div>
+    </div>
+</section>
+
+<!-- Diagnóstico EN -->
+<section id="tese-en">
+    <div class="container">
+        <div class="section-header">Zeitgeist Diagnosis</div>
+        <h2>Why vertical specialists <span class="accent">are no longer enough</span></h2>
+        <p>
+            The contemporary professional is neither the vertical specialist nor the superficial generalist. 
+            It is the <strong>regent of knowledge pipelines</strong> — one who conducts heterogeneous flows 
+            of knowledge, techniques and tools within an ecosystem architecture.
+        </p>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">Speed as Constant</div>
+                <div class="card-desc">Crises overlap: pandemic, digital transformation, geopolitical reordering, generative AI emergence at industrial scale. Instability is the rule.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Specialist Obsolescence</div>
+                <div class="card-desc">Those who dominate only one silo lose relevance. Movement detected across all C-level functions: CFO, CIO, CCO, CISO.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Learn-it-all</div>
+                <div class="card-desc">The contemporary professional ethos replaces know-it-all with learn-it-all. Lifelong learning as requirement, not option.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Return of Bildung</div>
+                <div class="card-desc">Integral human formation, not technical training. Seven previously separate fields now demand joint operation.</div>
+            </div>
+        </div>
+        <div class="quote-block">
+            "The professional of the current zeitgeist is neither the vertical specialist nor the superficial generalist. 
+            It is the regent of knowledge pipelines, operating in continuous, cyclical and dynamic flow, 
+            within an ecosystem architecture."
+        </div>
+    </div>
+</section>
+
+<!-- Evidências EN -->
+<section>
+    <div class="container">
+        <div class="section-header">Convergent Evidence</div>
+        <h2>Four sources describing <span class="accent">the same phenomenon</span></h2>
+        <p>
+            Each of these sources, in a distinct domain, describes the transition from vertical specialist 
+            to pipeline regent. None of them names the phenomenon. P²M² fills that gap.
+        </p>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-sub">SAP CONCUR · 2022</div>
+                <div class="card-title">Perceptions of the Modern CFO</div>
+                <div class="card-desc">Ten Brazilian CFOs describe, in first person, the transition from controller to financial regent. Carlos Alberto Piazza names "polymath professionals" as a requirement. Vivianne Valente (Tigre) names "ambidexterity" as a core competence.</div>
+            </div>
+            <div class="card">
+                <div class="card-sub">DONNA BOEHME</div>
+                <div class="card-title">Compliance is Not a Legal Function</div>
+                <div class="card-desc">Compliance ≠ legal function. It is a multidisciplinary function of governance, risk, control, culture, ethics — and technical observability. The same epistemic movement that the SAP Concur eBook describes in finance, Boehme describes in compliance.</div>
+            </div>
+            <div class="card">
+                <div class="card-sub">FSA · AUGUST/2024</div>
+                <div class="card-title">Prior Art Methodological</div>
+                <div class="card-desc">The <code>fullstack-advocate</code> repository positions itself as a "technical brain" that connects layers, advocates silo elimination via unified flows, proposes regency as an operative category. Documented precedence of two years.</div>
+            </div>
+            <div class="card">
+                <div class="card-sub">TOKEN COSTS · 2026</div>
+                <div class="card-title">Material Reality Ignored</div>
+                <div class="card-desc">In June 2026, token costs (LLM inference compute, embeddings, agents) are a new cost line, unpredictable, unauditable and without clear governance. Companies operate under a metric that does not read a material part of their cost structure.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Arquitetura EN -->
+<section id="arquitetura-en">
+    <div class="container">
+        <div class="section-header">Architecture</div>
+        <h2>P²M² — <span class="accent">Professional Stack in Four Layers</span></h2>
+        <p>
+            Order from epistemic to operational. Each lower layer sustains the upper one. 
+            Without polymathy, polyglossy becomes a disconnected collection of skills. 
+            Without polyglossy, multicloud becomes infrastructure without purpose. 
+            Without multicloud, multiagency becomes hostage to a single provider. 
+            Without multiagency, the three previous layers lose their execution lever.
+        </p>
+        <table class="arch-table">
+            <thead>
+                <tr><th>Layer</th><th>Domain</th><th>Operation</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Polymath</td>
+                    <td>Cognitive</td>
+                    <td>Simultaneous domain of multiple areas without rigid hierarchy. Engineering, compliance, cyber, AI safety and GRC operated as layers of a single ecosystem.</td>
+                </tr>
+                <tr>
+                    <td>Polyglot</td>
+                    <td>Semiotic</td>
+                    <td>Portuguese, English, Chinese (Macau); civil law languages (EU, Brazil, Macau); technical languages (HTTP, SQL, IaC, RDF, OWL).</td>
+                </tr>
+                <tr>
+                    <td>Multicloud</td>
+                    <td>Infrastructural</td>
+                    <td>Provider independence: AWS, Azure, GCP, Magalu Cloud, Hetzner, on-premise when digital sovereignty demands.</td>
+                </tr>
+                <tr>
+                    <td>Multiagent</td>
+                    <td>Executive</td>
+                    <td>CI/CD pipelines, autonomous agent orchestration, cross-cutting compliance automation, MCP (Model Context Protocol).</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Disciplinary Implications</h3>
+        <p>
+            P²M² rewrites traditional functions: the CFO ceases to be a controller to become a financial regent; 
+            the Compliance Officer ceases to be a norm interpreter to become a multidisciplinary governance regent; 
+            the CISO ceases to be a perimeter defender to become a regent of cyber risk integrated with AI safety and PQC; 
+            the full-stack developer ceases to be a multi-layer executor to become a systemic defender. 
+            Under P²M², each function ceases to be a silo and becomes a layer of a broader regency.
+        </p>
+    </div>
+</section>
+
+<!-- Regência EN -->
+<section>
+    <div class="container">
+        <div class="section-header">Operative Category</div>
+        <h2>Regency — <span class="accent">Conduct of Heterogeneous Flows</span></h2>
+        <p>
+            Regency is not a metaphor. In Portuguese, it carries three simultaneous senses that "orchestration" in English 
+            does not reach — losing the grammatical-structural and political-delegative underpinnings.
+        </p>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-sub">MUSICAL</div>
+                <div class="card-title">Orchestra Conduction</div>
+                <div class="card-desc">The conductor does not play instruments. Coordinates time, dynamics and articulation between performers. The technical regent does not write code in all layers — coordinates the architecture between them.</div>
+            </div>
+            <div class="card">
+                <div class="card-sub">GRAMMATICAL</div>
+                <div class="card-title">Syntactic Governance</div>
+                <div class="card-desc">Grammatical regency governs relations between terms in a sentence. The pipeline regent governs relations between layers, tools and agents in an architecture.</div>
+            </div>
+            <div class="card">
+                <div class="card-sub">POLITICAL</div>
+                <div class="card-title">Delegated Authority</div>
+                <div class="card-desc">The political regent decides on behalf of the whole. The technical regent has delegated authority to define standards, approve architectures and audit compliance on behalf of the organization.</div>
+            </div>
+        </div>
+        <div class="quote-block">
+            "The regent of knowledge pipelines conducts heterogeneous flows (knowledge, techniques, tools, agents) 
+            within an ecosystem architecture, guaranteeing syntactic coherence, temporal coordination 
+            and delegated authority to decide on behalf of the whole."
+        </div>
+    </div>
+</section>
+
+<!-- 7 Campos EN -->
+<section id="campos-en">
+    <div class="container">
+        <div class="section-header">Transversal Integrator</div>
+        <h2>The Seven Fields that FSA <span class="accent">Connects</span></h2>
+        <p>
+            It is not enough to list seven fields. The FSA thesis is that these fields <strong>can no longer be operated in silos</strong> 
+            in the contemporary SME. The reasons are technical, regulatory and economic.
+        </p>
+        <p>
+            <strong>Technical reason:</strong> a vulnerability in 2026 is not "either cyber, or AI security, or compliance". 
+            It is all three at the same time. An LLM agent with access to internal systems suffers prompt injection (AI security), 
+            which triggers unauthorized action (compliance), which leaks personal data (LGPD/GDPR, cyber). The incident crosses three disciplines; the defense must also cross them.
+        </p>
+        <p>
+            <strong>Regulatory reason:</strong> EU AI Act, NIS2, GDPR, LGPD, ISO/IEC 42001 — all have overlapping requirements. 
+            A company with three different vendors for three regulations pays triple, with risk of inconsistency. The FSA operates the whole.
+        </p>
+        <p>
+            <strong>Economic reason:</strong> SMEs in Brazil and Portugal cannot separately hire CTO, CISO, 
+            AI Safety Officer, Technical Compliance Officer and PQC consultant. The summed price is prohibitive. 
+            The FSA offers transversal regency at a fraction of the cost of the sum.
+        </p>
+        <div class="cards-grid" style="margin-top:40px;">
+            <div class="card">
+                <div class="card-title">1. Full-Stack Engineering <span class="badge active">ACTIVE</span></div>
+                <div class="card-desc">Frontend, backend, infrastructure, DevOps. Original scope since August/2024. React, Next.js, Node.js, Python, AWS, Docker, Kubernetes, CI/CD.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">2. Technical-Operational Compliance <span class="badge active">EXPANDING</span></div>
+                <div class="card-desc">Observability, auditability, data pipeline compliance, technical evidence for audit. ISO 27001, 27701, SOC 2.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">3. Cybersecurity <span class="badge active">EXPANDING</span></div>
+                <div class="card-desc">Perimeter, identity, classical cryptography, vulnerability management, response. SIEM/SOAR, DevSecOps, SAST/DAST.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">4. PQC <span class="badge regulatory">REGULATORY 2026</span></div>
+                <div class="card-desc">Post-Quantum Cryptography. Cryptographic inventory, crypto-agility, algorithmic migration planning. Kyber, Dilithium, SPHINCS+. Regulatory topic in US, EU and Brazil.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">5. AI Safety <span class="badge active">AUTONOMOUS FIELD</span></div>
+                <div class="card-desc">Alignment, interpretability, robustness, controllability, red-teaming, evaluation applied to production systems. HELM, BIG-bench, Anthropic Inspect.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">6. AI Security <span class="badge active">SUBFIELD</span></div>
+                <div class="card-desc">Security applied to AI systems: adversarial robustness, prompt injection, model theft, training data poisoning, model supply chain. Lakera Guard, NeMo Guardrails.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">7. AI GRC <span class="badge regulatory">REGULATORY</span></div>
+                <div class="card-desc">Governance, Risk and Compliance of AI. ISO/IEC 42001:2023, NIST AI RMF, EU AI Act, PL 2338/2023. Model Cards, Datasheets, AI Incident Database.</div>
+            </div>
+        </div>
+        <h3 style="margin-top:48px;">Business ↔ Technology Bridge</h3>
+        <p>
+            The eighth function of the FSA is the frontier where the CFO needs to understand token costs, compute expenses, 
+            vendor risks, cloud foreign exchange exposure — and the technical team needs to understand operating margin, 
+            EBITDA and financial governance. Paradigmatically exemplified by <strong>EBITTDA</strong>.
+        </p>
+    </div>
+</section>
+
+<!-- EBITTDA EN -->
+<section id="ebitda-en">
+    <div class="container">
+        <div class="section-header">Frontier Metric</div>
+        <h2>EBITTDA — <span class="accent">The Second T is Tokens</span></h2>
+        <p>
+            In 2026, companies that adopted generative AI at scale have a new cost line — tokens — 
+            that is not mapped in any traditional ruler. These costs have three characteristics 
+            that escape financial planning:
+        </p>
+        <ul class="problem-list">
+            <li><strong>Unpredictability</strong> — they vary by usage, not by fixed contract. Sudden spikes are common.</li>
+            <li><strong>Unauditability</strong> — records distributed across multiple providers, heterogeneous formats, absence of accounting classification standard.</li>
+            <li><strong>Absence of governance</strong> — no traditional area (finance, IT, legal, compliance) has a clear mandate over them.</li>
+        </ul>
+        <p>
+            <strong>The consequence:</strong> CFOs discover holes in the budget. CISOs discover data exfiltration via LLM APIs. 
+            Compliance discovers processing of sensitive data in non-compliant jurisdictions. Each discovers from their own silo. 
+            <strong>No one sees the whole.</strong>
+        </p>
+        <div class="ebitda-block">
+            <div class="ebitda-formula">
+                Earnings Before Interest, Taxes, <span class="token">Tokens</span>, Depreciation and Amortization
+            </div>
             <p>
-                O ecossistema Hubstry distribui seus ativos digitais por múltiplas 
-                plataformas e infraestruturas. Resiliência, redundância e 
-                diversificação por nicho. Se uma falha, as outras permanecem.
+                EBITTDA internalizes token cost as an auditable line, with <strong>technical traceability</strong> 
+                (which agent spent how much, in which operation, under which policy), <strong>verifiable compliance</strong> 
+                (which data was sent to which provider, under which legal basis) and <strong>clear governance</strong> 
+                (who approves budget increases, who defines limits per agent, who audits).
             </p>
+            <p>
+                EBITTDA, therefore, <em>is</em> the FSA at reduced scale: a frontier concept that only makes sense 
+                if you operate in all seven fields simultaneously. A CFO alone does not get there. An engineer alone does not get there. 
+                A <strong>regent</strong> does.
+            </p>
+        </div>
+    </div>
+</section>
 
-            <div class="channels">
-                <div class="channel">
-                    <div class="channel-name">GitLab Pages</div>
-                    <div class="channel-url">hubstry-group.gitlab.io/fullstack-advocate</div>
-                    <div class="channel-status">[ INSTÂNCIA PRINCIPAL ]</div>
+<!-- Gonçalves et Alii EN -->
+<section>
+    <div class="container">
+        <div class="section-header">Sister Instance</div>
+        <h2>Gonçalves et Alii — <span class="accent">Full Stack Legal Advocate</span></h2>
+        <p>
+            FSA and Gonçalves et Alii are <strong>sister instances</strong> of the P²M² architecture, with overlap in the compliance layer 
+            and explicit handoff interfaces. Each autonomous, each with its own brand, with joint projects when the client needs both.
+        </p>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-sub">FSA · INSTANCE 01</div>
+                <div class="card-title">Technical-Operational Side</div>
+                <div class="card-desc">Instrumentation, metrics, technical audit, compliance evidence, compliant systems architecture. Regency of the seven technical fields.</div>
+            </div>
+            <div class="card">
+                <div class="card-sub">GONÇALVES ET ALII · INSTANCE 02</div>
+                <div class="card-title">Legal-Regulatory Side</div>
+                <div class="card-desc">Legal architecture of complex operations, opinions, contracts, regulatory, legal due diligence, defense in audit. Connects law, data, governance and operation.</div>
+            </div>
+        </div>
+        <p style="margin-top:24px;">
+            <strong>Handoff:</strong> a client entering through FSA with a technical problem involving legal risk → Gonçalves et Alii is activated for the legal part. 
+            A client entering through Gonçalves et Alii with a legal problem involving technical implementation → FSA is activated for the technical part. 
+            Joint projects: AI compliance program implementation, critical vendor audit, preparation for EU AI Act enforcement.
+        </p>
+        <p>
+            <a href="https://goncalvesetalii.github.io" target="_blank" style="color:var(--accent-cyan);text-decoration:none;font-family:var(--font-mono);font-size:0.8rem;">→ goncalvesetalii.github.io</a>
+        </p>
+    </div>
+</section>
+
+<!-- Outras Instâncias EN -->
+<section>
+    <div class="container">
+        <div class="section-header">Pipeline</div>
+        <h2>Other Instances <span class="accent">in Maturation</span></h2>
+        <p>
+            Vertical candidates for application of the P²M² architecture. Criteria: domain under digital transformation, 
+            dominant professional silo, market willing to pay for regency, methodological parallelism with FSA.
+        </p>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">Full Stack Governance Advocate</div>
+                <div class="card-desc">Corporate governance, boards, ESG. Regency of strategic decision pipelines.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Full Stack Risk Advocate</div>
+                <div class="card-desc">Integrated risk management: operational, cyber, climate and geopolitical.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Full Stack Data Advocate</div>
+                <div class="card-desc">Data orchestration in organizations without formal CDO. Data architecture as regency.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Full Stack Innovation Advocate</div>
+                <div class="card-desc">Regency of innovation pipelines in traditional corporations. Connection between R&D and operation.</div>
+            </div>
+        </div>
+        <p style="margin-top:24px;font-size:0.85rem;font-style:italic;">
+            Principle of non-premature fragmentation: keep all instances documented in this framework 
+            until a vertical matures enough to justify its own repository and autonomous brand.
+        </p>
+    </div>
+</section>
+
+<!-- Artefatos EN -->
+<section>
+    <div class="container">
+        <div class="section-header">Production</div>
+        <h2>Derived Artifacts <span class="accent">in Progress</span></h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">Repositioned README <span class="badge active">IN DEVELOPMENT</span></div>
+                <div class="card-desc">Updating the FSA repository to reflect the repositioning as transversal integrator. GitHub + GitLab.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Zenodo Paper <span class="badge pending">Q3/2026</span></div>
+                <div class="card-desc">"Full Stack Advocacy: P²M² architecture applied to the transversal integration of engineering, compliance, security and AI governance." License CC BY-NC-SA 4.0.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Overall 720° Position Paper <span class="badge pending">DRAFT</span></div>
+                <div class="card-desc">4-6 pages. Analytical, cold, actionable editorial voice. Zeitgeist diagnosis, P²M² as architecture, regency as category, implications for Lusophone SMEs.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">LinkedIn Posts <span class="badge active">DERIVABLE</span></div>
+                <div class="card-desc">Extractable excerpts from the framework. 800-1200 characters. Analytical tone, no excessive hashtags.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Operacional EN -->
+<section>
+    <div class="container">
+        <div class="section-header">Status</div>
+        <h2>Operational <span class="accent">· Where We Are</span></h2>
+        <table class="arch-table">
+            <thead>
+                <tr><th>Asset</th><th>Status</th><th>URL / Location</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>GitHub Repository</td><td style="color:var(--accent-green)">ACTIVE</td><td>github.com/guilherme-machado-ceo/fullstack-advocate</td></tr>
+                <tr><td>GitLab Pages</td><td style="color:var(--accent-green)">ACTIVE</td><td>hubstry-group.gitlab.io/fullstack-advocate</td></tr>
+                <tr><td>GitHub Pages (this site)</td><td style="color:var(--accent-green)">DEPLOYED</td><td>guilherme-machado-ceo.github.io/fullstack-advocate</td></tr>
+                <tr><td>AWS S3</td><td style="color:var(--accent-gold)">LEGACY</td><td>s3://fullstack-advocate-landing</td></tr>
+                <tr><td>Bitbucket</td><td style="color:var(--accent-gold)">PENDING</td><td>In configuration</td></tr>
+                <tr><td>Cyber Noir Landing</td><td style="color:var(--accent-gold)">PENDING</td><td>advocate.hubstry.dev</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Eixo Lusófono EN -->
+<section id="eixo-en">
+    <div class="container">
+        <div class="section-header">Regulatory Geopolitics</div>
+        <h2>Lusophone Axis — <span class="accent">Three Civilizational Vectors</span></h2>
+        <p>
+            Hubstry headquartered in Rio de Janeiro. FSA operating from the Brazil–Portugal axis. 
+            Same technical architecture, multiple regulatory timings, three expansion vectors.
+        </p>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-sub">VECTOR 01 · EUROPE</div>
+                <div class="card-title">via Portugal</div>
+                <div class="card-desc">Gateway to the EU under NIS2 (Directive 2022/2555) and EU AI Act (Regulation 2024/1689). Extension to EEA (Norway, Iceland, Liechtenstein) and post-Brexit United Kingdom.</div>
+                <div style="margin-top:12px;">
+                    <span class="badge" style="border-color:var(--accent-magenta);color:var(--accent-magenta)">NIS2</span>
+                    <span class="badge" style="border-color:var(--accent-magenta);color:var(--accent-magenta)">EU AI Act</span>
                 </div>
-                <div class="channel">
-                    <div class="channel-name">GitHub Pages</div>
-                    <div class="channel-url">guilherme-machado-ceo.github.io/fullstack-advocate</div>
-                    <div class="channel-status">[ INSTÂNCIA GEO ]</div>
+            </div>
+            <div class="card">
+                <div class="card-sub">VECTOR 02 · AFRICA</div>
+                <div class="card-title">via Brazil and Portugal</div>
+                <div class="card-desc">Gateway to PALOP (Angola, Mozambique, Cape Verde, Guinea-Bissau, São Tomé and Príncipe) via CPLP. Additional vector via BRICS+ for Brazil–Africa technological cooperation.</div>
+                <div style="margin-top:12px;">
+                    <span class="badge" style="border-color:var(--accent-gold);color:var(--accent-gold)">PALOP</span>
+                    <span class="badge" style="border-color:var(--accent-gold);color:var(--accent-gold)">CPLP</span>
+                    <span class="badge" style="border-color:var(--accent-gold);color:var(--accent-gold)">BRICS+</span>
                 </div>
-                <div class="channel">
-                    <div class="channel-name">AWS S3</div>
-                    <div class="channel-url">s3://fullstack-advocate-landing</div>
-                    <div class="channel-status">[ ARQUIVO LEGADO ]</div>
-                </div>
-                <div class="channel">
-                    <div class="channel-name">Bitbucket</div>
-                    <div class="channel-url">Em configuração</div>
-                    <div class="channel-status">[ PENDING ]</div>
+            </div>
+            <div class="card">
+                <div class="card-sub">VECTOR 03 · ASIA</div>
+                <div class="card-title">via Macau</div>
+                <div class="card-desc">Institutional gateway to China through the Macau Forum (China–Portuguese-speaking Countries Cooperation Forum, active since 2003). Macau as SAR with Lusophone legal system.</div>
+                <div style="margin-top:12px;">
+                    <span class="badge" style="border-color:var(--accent-cyan);color:var(--accent-cyan)">Macau Forum</span>
+                    <span class="badge" style="border-color:var(--accent-cyan);color:var(--accent-cyan)">SAR</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- Omnichannel EN -->
+<section>
+    <div class="container">
+        <div class="section-header">Resilience</div>
+        <h2>Omnichannel — <span class="accent">Multiple Platforms, Same Asset</span></h2>
+        <p>
+            The Hubstry ecosystem distributes its digital assets across multiple platforms and infrastructures. 
+            Resilience, redundancy and diversification by niche. If one fails, the others remain. 
+            Learn-it-all, resilience, redundancy.
+        </p>
+        <div class="channels">
+            <div class="channel">
+                <div class="channel-name">GitLab Pages</div>
+                <div class="channel-url">hubstry-group.gitlab.io/fullstack-advocate</div>
+                <div class="channel-status">[ PRIMARY INSTANCE ]</div>
+            </div>
+            <div class="channel">
+                <div class="channel-name">GitHub Pages</div>
+                <div class="channel-url">guilherme-machado-ceo.github.io/fullstack-advocate</div>
+                <div class="channel-status">[ GEO INSTANCE ]</div>
+            </div>
+            <div class="channel">
+                <div class="channel-name">AWS S3</div>
+                <div class="channel-url">s3://fullstack-advocate-landing</div>
+                <div class="channel-status">[ LEGACY ARCHIVE ]</div>
+            </div>
+            <div class="channel">
+                <div class="channel-name">Bitbucket</div>
+                <div class="channel-url">In configuration</div>
+                <div class="channel-status">[ PENDING ]</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+
 </main>
 
 <footer>
@@ -716,18 +1408,28 @@
         <div class="footer-links">
             <a href="https://hubstry.dev" target="_blank">hubstry.dev</a>
             <a href="https://goncalvesetalii.github.io" target="_blank">Gonçalves et Alii</a>
-            <a href="https://calendly.com/guilhermemachado-hubstry-ecosystem/30min" target="_blank">Agendar Call</a>
+            <a href="https://calendly.com/guilhermemachado-hubstry-ecosystem/30min" target="_blank">Schedule a Call</a>
             <a href="https://github.com/guilherme-machado-ceo" target="_blank">GitHub</a>
         </div>
         <div class="footer-copy">
-            © 2024-2026 Hubstry Deep Tech · FSA — Instância 01 da Arquitetura P²M²
+            © 2024-2026 Hubstry Deep Tech · FSA — Instance 01 of the P²M² Architecture
         </div>
         <div class="footer-epigraph">
             FSA, 2024 → P²M², 2026.<br>
-            Da prova de conceito metodológica à arquitetura epistêmica.
+            From methodological proof of concept to epistemic architecture.
         </div>
     </div>
 </footer>
+
+<script>
+function setLang(lang) {
+    document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('lang-' + lang).classList.add('active');
+    document.getElementById('btn-' + lang).classList.add('active');
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+}
+</script>
 
 </body>
 </html>
