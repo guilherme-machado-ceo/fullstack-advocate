@@ -54,7 +54,6 @@
             z-index: 1;
         }
 
-        /* Language toggle */
         .lang-btn {
             background: transparent;
             border: 1px solid var(--border);
@@ -79,7 +78,6 @@
         .lang-section { display: none; }
         .lang-section.active { display: block; }
 
-        /* Header */
         header {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -120,7 +118,6 @@
         }
         .nav-links a:hover { color: var(--accent-cyan); }
 
-        /* Hero */
         .hero {
             padding: 140px 0 80px;
             text-align: center;
@@ -163,7 +160,6 @@
         }
         .hero-meta span { color: var(--accent-cyan); }
 
-        /* Sections */
         section {
             padding: 80px 0;
             border-bottom: 1px solid var(--border);
@@ -197,7 +193,6 @@
         }
         strong { color: var(--text); font-weight: 600; }
 
-        /* Blockquote */
         .quote-block {
             border-left: 3px solid var(--accent-cyan);
             padding: 20px 24px;
@@ -215,7 +210,6 @@
             color: var(--accent-green);
         }
 
-        /* Cards grid */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -248,7 +242,6 @@
             line-height: 1.7;
         }
 
-        /* Table */
         .arch-table {
             width: 100%;
             border-collapse: collapse;
@@ -284,7 +277,6 @@
             width: 14%;
         }
 
-        /* Badge */
         .badge {
             display: inline-block;
             font-family: var(--font-mono);
@@ -299,7 +291,6 @@
         .badge.pending { border-color: var(--accent-gold); color: var(--accent-gold); }
         .badge.regulatory { border-color: var(--accent-magenta); color: var(--accent-magenta); }
 
-        /* EBITTDA block */
         .ebitda-block {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -333,7 +324,6 @@
             font-weight: bold;
         }
 
-        /* Problem list */
         .problem-list {
             margin: 20px 0 20px 20px;
             padding-left: 20px;
@@ -354,7 +344,6 @@
             font-weight: bold;
         }
 
-        /* Channels */
         .channels {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -387,7 +376,6 @@
             font-family: var(--font-mono);
         }
 
-        /* Footer */
         footer {
             padding: 60px 0 40px;
             text-align: center;
@@ -427,7 +415,6 @@
             padding-top: 24px;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hero { padding: 120px 0 50px; }
             section { padding: 50px 0; }
@@ -465,7 +452,6 @@
 <!-- ==================== PORTUGUÊS ==================== -->
 <div id="lang-pt" class="lang-section active">
 
-<!-- Hero -->
 <section class="hero" style="border-bottom:1px solid var(--border);">
     <div class="container">
         <div class="hero-tag">Instância 01 da Arquitetura P²M²</div>
@@ -484,7 +470,6 @@
     </div>
 </section>
 
-<!-- Diagnóstico -->
 <section id="tese">
     <div class="container">
         <div class="section-header">Diagnóstico do Zeitgeist</div>
@@ -520,7 +505,6 @@
     </div>
 </section>
 
-<!-- Evidências -->
 <section>
     <div class="container">
         <div class="section-header">Evidências Convergentes</div>
@@ -554,7 +538,6 @@
     </div>
 </section>
 
-<!-- Arquitetura -->
 <section id="arquitetura">
     <div class="container">
         <div class="section-header">Arquitetura</div>
@@ -604,7 +587,6 @@
     </div>
 </section>
 
-<!-- Regência -->
 <section>
     <div class="container">
         <div class="section-header">Categoria Operativa</div>
@@ -638,7 +620,6 @@
     </div>
 </section>
 
-<!-- 7 Campos -->
 <section id="campos">
     <div class="container">
         <div class="section-header">Integrador Transversal</div>
@@ -700,7 +681,6 @@
     </div>
 </section>
 
-<!-- EBITTDA -->
 <section id="ebitda">
     <div class="container">
         <div class="section-header">Métrica de Fronteira</div>
@@ -739,7 +719,6 @@
     </div>
 </section>
 
-<!-- Gonçalves et Alii -->
 <section>
     <div class="container">
         <div class="section-header">Instância Irmã</div>
@@ -771,7 +750,6 @@
     </div>
 </section>
 
-<!-- Outras Instâncias -->
 <section>
     <div class="container">
         <div class="section-header">Pipeline</div>
@@ -805,33 +783,6 @@
     </div>
 </section>
 
-<!-- Artefatos -->
-<section>
-    <div class="container">
-        <div class="section-header">Produção</div>
-        <h2>Artefatos Derivados <span class="accent">em Andamento</span></h2>
-        <div class="cards-grid">
-            <div class="card">
-                <div class="card-title">README Reposicionado <span class="badge active">EM DESENVOLVIMENTO</span></div>
-                <div class="card-desc">Atualização do repositório FSA para refletir o reposicionamento como integrador transversal. GitHub + GitLab.</div>
-            </div>
-            <div class="card">
-                <div class="card-title">Paper Zenodo <span class="badge pending">Q3/2026</span></div>
-                <div class="card-desc">"Full Stack Advocacy: arquitetura P²M² aplicada à integração transversal de engenharia, compliance, segurança e governança de IA." Licença CC BY-NC-SA 4.0.</div>
-            </div>
-            <div class="card">
-                <div class="card-title">Position Paper Overall 720° <span class="badge pending">RASCUNHO</span></div>
-                <div class="card-desc">4-6 páginas. Voz editorial analítica, fria, acionável. Diagnóstico do zeitgeist, P²M² como arquitetura, regência como categoria, implicações para PMEs lusófonas.</div>
-            </div>
-            <div class="card">
-                <div class="card-title">Posts LinkedIn <span class="badge active">DERIVÁVEIS</span></div>
-                <div class="card-desc">Trechos extraíveis do framework. 800-1200 caracteres. Tom analítico, sem hashtags excessivas.</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Operacional -->
 <section>
     <div class="container">
         <div class="section-header">Status</div>
@@ -844,15 +795,12 @@
                 <tr><td>Repositório GitHub</td><td style="color:var(--accent-green)">ATIVO</td><td>github.com/guilherme-machado-ceo/fullstack-advocate</td></tr>
                 <tr><td>GitLab Pages</td><td style="color:var(--accent-green)">ATIVO</td><td>hubstry-group.gitlab.io/fullstack-advocate</td></tr>
                 <tr><td>GitHub Pages (este site)</td><td style="color:var(--accent-green)">DEPLOYADO</td><td>guilherme-machado-ceo.github.io/fullstack-advocate</td></tr>
-                <tr><td>AWS S3</td><td style="color:var(--accent-gold)">LEGADO</td><td>s3://fullstack-advocate-landing</td></tr>
-                <tr><td>Bitbucket</td><td style="color:var(--accent-gold)">PENDING</td><td>Em configuração</td></tr>
-                <tr><td>Landing Cyber Noir</td><td style="color:var(--accent-gold)">PENDENTE</td><td>advocate.hubstry.dev</td></tr>
+                <tr><td>AWS S3</td><td style="color:var(--accent-green)">ATIVO</td><td>s3://fullstack-advocate-landing</td></tr>
             </tbody>
         </table>
     </div>
 </section>
 
-<!-- Eixo Lusófono -->
 <section id="eixo">
     <div class="container">
         <div class="section-header">Geopolítica Regulatória</div>
@@ -866,7 +814,7 @@
                 <div class="card-sub">VETOR 01 · EUROPA</div>
                 <div class="card-title">via Portugal</div>
                 <div class="card-desc">Porta para UE sob NIS2 (Diretiva 2022/2555) e EU AI Act (Regulamento 2024/1689). Extensão ao EEA (Noruega, Islândia, Liechtenstein) e Reino Unido pós-Brexit.</div>
-                <div class="vector-tags" style="margin-top:12px;">
+                <div style="margin-top:12px;">
                     <span class="badge" style="border-color:var(--accent-magenta);color:var(--accent-magenta)">NIS2</span>
                     <span class="badge" style="border-color:var(--accent-magenta);color:var(--accent-magenta)">EU AI Act</span>
                 </div>
@@ -875,7 +823,7 @@
                 <div class="card-sub">VETOR 02 · ÁFRICA</div>
                 <div class="card-title">via Brasil e Portugal</div>
                 <div class="card-desc">Porta para PALOP (Angola, Moçambique, Cabo Verde, Guiné-Bissau, São Tomé e Príncipe) via CPLP. Vetor adicional via BRICS+ para cooperação tecnológica Brasil–África.</div>
-                <div class="vector-tags" style="margin-top:12px;">
+                <div style="margin-top:12px;">
                     <span class="badge" style="border-color:var(--accent-gold);color:var(--accent-gold)">PALOP</span>
                     <span class="badge" style="border-color:var(--accent-gold);color:var(--accent-gold)">CPLP</span>
                     <span class="badge" style="border-color:var(--accent-gold);color:var(--accent-gold)">BRICS+</span>
@@ -885,7 +833,7 @@
                 <div class="card-sub">VETOR 03 · ÁSIA</div>
                 <div class="card-title">via Macau</div>
                 <div class="card-desc">Porta institucional para China através do Fórum Macau (Fórum de Cooperação China–Países de Língua Portuguesa, ativo desde 2003). Macau como SAR com sistema jurídico lusófono.</div>
-                <div class="vector-tags" style="margin-top:12px;">
+                <div style="margin-top:12px;">
                     <span class="badge" style="border-color:var(--accent-cyan);color:var(--accent-cyan)">Fórum Macau</span>
                     <span class="badge" style="border-color:var(--accent-cyan);color:var(--accent-cyan)">SAR</span>
                 </div>
@@ -894,7 +842,6 @@
     </div>
 </section>
 
-<!-- Omnichannel -->
 <section>
     <div class="container">
         <div class="section-header">Resiliência</div>
@@ -918,12 +865,7 @@
             <div class="channel">
                 <div class="channel-name">AWS S3</div>
                 <div class="channel-url">s3://fullstack-advocate-landing</div>
-                <div class="channel-status">[ ARQUIVO LEGADO ]</div>
-            </div>
-            <div class="channel">
-                <div class="channel-name">Bitbucket</div>
-                <div class="channel-url">Em configuração</div>
-                <div class="channel-status">[ PENDING ]</div>
+                <div class="channel-status">[ REDUNDÂNCIA ATIVA ]</div>
             </div>
         </div>
     </div>
@@ -934,7 +876,6 @@
 <!-- ==================== ENGLISH ==================== -->
 <div id="lang-en" class="lang-section">
 
-<!-- Hero EN -->
 <section class="hero" style="border-bottom:1px solid var(--border);">
     <div class="container">
         <div class="hero-tag">Instance 01 of the P²M² Architecture</div>
@@ -953,7 +894,6 @@
     </div>
 </section>
 
-<!-- Diagnóstico EN -->
 <section id="tese-en">
     <div class="container">
         <div class="section-header">Zeitgeist Diagnosis</div>
@@ -989,14 +929,13 @@
     </div>
 </section>
 
-<!-- Evidências EN -->
 <section>
     <div class="container">
         <div class="section-header">Convergent Evidence</div>
         <h2>Four sources describing <span class="accent">the same phenomenon</span></h2>
         <p>
             Each of these sources, in a distinct domain, describes the transition from vertical specialist 
-            to pipeline regent. None of them names the phenomenon. P²M² fills that gap.
+            to pipeline regent. None names the phenomenon. P²M² fills that gap.
         </p>
         <div class="cards-grid">
             <div class="card">
@@ -1023,7 +962,6 @@
     </div>
 </section>
 
-<!-- Arquitetura EN -->
 <section id="arquitetura-en">
     <div class="container">
         <div class="section-header">Architecture</div>
@@ -1064,16 +1002,15 @@
         </table>
         <h3>Disciplinary Implications</h3>
         <p>
-            P²M² rewrites traditional functions: the CFO ceases to be a controller to become a financial regent; 
-            the Compliance Officer ceases to be a norm interpreter to become a multidisciplinary governance regent; 
-            the CISO ceases to be a perimeter defender to become a regent of cyber risk integrated with AI safety and PQC; 
-            the full-stack developer ceases to be a multi-layer executor to become a systemic defender. 
-            Under P²M², each function ceases to be a silo and becomes a layer of a broader regency.
+            P²M² rewrites traditional functions: the CFO becomes a financial regent; 
+            the Compliance Officer becomes a multidisciplinary governance regent; 
+            the CISO becomes a regent of cyber risk integrated with AI safety and PQC; 
+            the full-stack developer becomes a systemic defender. 
+            Each function, under P²M², ceases to be a silo and becomes a layer of a broader regency.
         </p>
     </div>
 </section>
 
-<!-- Regência EN -->
 <section>
     <div class="container">
         <div class="section-header">Operative Category</div>
@@ -1107,13 +1044,12 @@
     </div>
 </section>
 
-<!-- 7 Campos EN -->
 <section id="campos-en">
     <div class="container">
         <div class="section-header">Transversal Integrator</div>
         <h2>The Seven Fields that FSA <span class="accent">Connects</span></h2>
         <p>
-            It is not enough to list seven fields. The FSA thesis is that these fields <strong>can no longer be operated in silos</strong> 
+            The FSA thesis is that these fields <strong>can no longer be operated in silos</strong> 
             in the contemporary SME. The reasons are technical, regulatory and economic.
         </p>
         <p>
@@ -1169,7 +1105,6 @@
     </div>
 </section>
 
-<!-- EBITTDA EN -->
 <section id="ebitda-en">
     <div class="container">
         <div class="section-header">Frontier Metric</div>
@@ -1208,7 +1143,6 @@
     </div>
 </section>
 
-<!-- Gonçalves et Alii EN -->
 <section>
     <div class="container">
         <div class="section-header">Sister Instance</div>
@@ -1240,7 +1174,6 @@
     </div>
 </section>
 
-<!-- Outras Instâncias EN -->
 <section>
     <div class="container">
         <div class="section-header">Pipeline</div>
@@ -1274,33 +1207,6 @@
     </div>
 </section>
 
-<!-- Artefatos EN -->
-<section>
-    <div class="container">
-        <div class="section-header">Production</div>
-        <h2>Derived Artifacts <span class="accent">in Progress</span></h2>
-        <div class="cards-grid">
-            <div class="card">
-                <div class="card-title">Repositioned README <span class="badge active">IN DEVELOPMENT</span></div>
-                <div class="card-desc">Updating the FSA repository to reflect the repositioning as transversal integrator. GitHub + GitLab.</div>
-            </div>
-            <div class="card">
-                <div class="card-title">Zenodo Paper <span class="badge pending">Q3/2026</span></div>
-                <div class="card-desc">"Full Stack Advocacy: P²M² architecture applied to the transversal integration of engineering, compliance, security and AI governance." License CC BY-NC-SA 4.0.</div>
-            </div>
-            <div class="card">
-                <div class="card-title">Overall 720° Position Paper <span class="badge pending">DRAFT</span></div>
-                <div class="card-desc">4-6 pages. Analytical, cold, actionable editorial voice. Zeitgeist diagnosis, P²M² as architecture, regency as category, implications for Lusophone SMEs.</div>
-            </div>
-            <div class="card">
-                <div class="card-title">LinkedIn Posts <span class="badge active">DERIVABLE</span></div>
-                <div class="card-desc">Extractable excerpts from the framework. 800-1200 characters. Analytical tone, no excessive hashtags.</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Operacional EN -->
 <section>
     <div class="container">
         <div class="section-header">Status</div>
@@ -1313,15 +1219,12 @@
                 <tr><td>GitHub Repository</td><td style="color:var(--accent-green)">ACTIVE</td><td>github.com/guilherme-machado-ceo/fullstack-advocate</td></tr>
                 <tr><td>GitLab Pages</td><td style="color:var(--accent-green)">ACTIVE</td><td>hubstry-group.gitlab.io/fullstack-advocate</td></tr>
                 <tr><td>GitHub Pages (this site)</td><td style="color:var(--accent-green)">DEPLOYED</td><td>guilherme-machado-ceo.github.io/fullstack-advocate</td></tr>
-                <tr><td>AWS S3</td><td style="color:var(--accent-gold)">LEGACY</td><td>s3://fullstack-advocate-landing</td></tr>
-                <tr><td>Bitbucket</td><td style="color:var(--accent-gold)">PENDING</td><td>In configuration</td></tr>
-                <tr><td>Cyber Noir Landing</td><td style="color:var(--accent-gold)">PENDING</td><td>advocate.hubstry.dev</td></tr>
+                <tr><td>AWS S3</td><td style="color:var(--accent-green)">ACTIVE</td><td>s3://fullstack-advocate-landing</td></tr>
             </tbody>
         </table>
     </div>
 </section>
 
-<!-- Eixo Lusófono EN -->
 <section id="eixo-en">
     <div class="container">
         <div class="section-header">Regulatory Geopolitics</div>
@@ -1363,7 +1266,6 @@
     </div>
 </section>
 
-<!-- Omnichannel EN -->
 <section>
     <div class="container">
         <div class="section-header">Resilience</div>
@@ -1387,12 +1289,7 @@
             <div class="channel">
                 <div class="channel-name">AWS S3</div>
                 <div class="channel-url">s3://fullstack-advocate-landing</div>
-                <div class="channel-status">[ LEGACY ARCHIVE ]</div>
-            </div>
-            <div class="channel">
-                <div class="channel-name">Bitbucket</div>
-                <div class="channel-url">In configuration</div>
-                <div class="channel-status">[ PENDING ]</div>
+                <div class="channel-status">[ ACTIVE REDUNDANCY ]</div>
             </div>
         </div>
     </div>
