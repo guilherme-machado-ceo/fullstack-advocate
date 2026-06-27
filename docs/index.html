@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Full Stack Advocate — Eixo Lusófono. Três vetores de expansão: Europa, África, Ásia. Uma arquitetura P²M².">
+    <title>FSA — Eixo Lusófono | Hubstry Deep Tech</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg-elevated: #12121a;
+            --text: #e0e0e0;
+            --text-muted: #6b7280;
+            --accent-cyan: #00f0ff;
+            --accent-green: #39ff14;
+            --accent-magenta: #ff00aa;
+            --border: #1f1f2e;
+            --font-mono: 'Courier New', Courier, monospace;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Grid background effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--text-muted);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent-green);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            display: inline-block;
+            border: 1px solid var(--accent-green);
+            padding: 6px 16px;
+            border-radius: 2px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-meta {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .hero-meta span {
+            color: var(--accent-cyan);
+        }
+
+        /* Vectors visualization */
+        .vectors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 60px 0;
+        }
+
+        .vector-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            padding: 40px 32px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .vector-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green));
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+
+        .vector-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+        }
+
+        .vector-card:hover::before {
+            opacity: 1;
+        }
+
+        .vector-number {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--accent-magenta);
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+
+        .vector-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .vector-sub {
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
+            margin-bottom: 16px;
+            font-family: var(--font-mono);
+        }
+
+        .vector-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .vector-tags {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            padding: 4px 10px;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            border-radius: 2px;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-header {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--accent-green);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 600;
+            margin-bottom: 24px;
+            line-height: 1.3;
+        }
+
+        h2 .accent {
+            color: var(--accent-cyan);
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Architecture table */
+        .arch-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            font-size: 0.9rem;
+        }
+
+        .arch-table th {
+            text-align: left;
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--accent-cyan);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        .arch-table td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        .arch-table td:first-child {
+            color: var(--text);
+            font-weight: 500;
+            width: 20%;
+        }
+
+        .arch-table td:nth-child(2) {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            width: 15%;
+        }
+
+        /* EBITTDA block */
+        .ebitda-block {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            padding: 48px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .ebitda-block::before {
+            content: 'EBITTDA';
+            position: absolute;
+            top: -12px;
+            left: 48px;
+            background: var(--bg);
+            padding: 0 16px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent-magenta);
+            letter-spacing: 2px;
+        }
+
+        .ebitda-formula {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            color: var(--text);
+            margin: 24px 0;
+            padding: 20px;
+            border-left: 3px solid var(--accent-magenta);
+            background: rgba(255, 0, 170, 0.05);
+        }
+
+        .ebitda-formula .token {
+            color: var(--accent-magenta);
+            font-weight: bold;
+        }
+
+        /* Omnichannel */
+        .channels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .channel {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .channel:hover {
+            border-color: var(--accent-green);
+        }
+
+        .channel-name {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            margin-bottom: 8px;
+        }
+
+        .channel-url {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            word-break: break-all;
+        }
+
+        .channel-status {
+            font-size: 0.65rem;
+            color: var(--accent-green);
+            margin-top: 8px;
+            font-family: var(--font-mono);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        .footer-epigraph {
+            margin-top: 32px;
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 0 40px;
+            }
+
+            section {
+                padding: 50px 0;
+            }
+
+            .ebitda-block {
+                padding: 32px 24px;
+            }
+
+            .nav-links {
+                gap: 16px;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="nav">
+            <div class="logo">Hubstry <span>//</span> FSA</div>
+            <ul class="nav-links">
+                <li><a href="#eixo">Eixo</a></li>
+                <li><a href="#vetores">Vetores</a></li>
+                <li><a href="#arquitetura">P²M²</a></li>
+                <li><a href="#regencia">Regência</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero -->
+    <section class="hero" style="border-top: none;">
+        <div class="container">
+            <div class="hero-tag">Instância 01 da Arquitetura P²M²</div>
+            <h1>
+                Eixo Lusófono.<br>
+                <span class="highlight">Três Vetores.</span><br>
+                Uma Arquitetura.
+            </h1>
+            <p class="hero-sub">
+                Full Stack Advocate operando a partir do eixo Brasil–Portugal. 
+                Mesma arquitetura técnica, múltiplos timings regulatórios, 
+                três vetores civilizacionais.
+            </p>
+            <div class="hero-meta">
+                <span>Rio de Janeiro</span> · São Paulo · Lisboa · Porto · Macau
+            </div>
+        </div>
+    </section>
+
+    <!-- Vectors -->
+    <section id="vetores" style="border-top: none; padding-top: 0;">
+        <div class="container">
+            <div class="vectors">
+                <div class="vector-card">
+                    <div class="vector-number">VETOR 01</div>
+                    <div class="vector-title">Europa</div>
+                    <div class="vector-sub">via Portugal</div>
+                    <div class="vector-desc">
+                        Porta para a União Europeia sob NIS2 e EU AI Act. 
+                        Extensão ao EEA (Noruega, Islândia) e ao Reino Unido pós-Brexit. 
+                        Portugal como hub regulatório lusófono para compliance digital europeu.
+                    </div>
+                    <div class="vector-tags">
+                        <span class="tag">NIS2</span>
+                        <span class="tag">EU AI Act</span>
+                        <span class="tag">EEA</span>
+                        <span class="tag">UK</span>
+                    </div>
+                </div>
+
+                <div class="vector-card">
+                    <div class="vector-number">VETOR 02</div>
+                    <div class="vector-title">África</div>
+                    <div class="vector-sub">via Brasil e Portugal</div>
+                    <div class="vector-desc">
+                        Porta para PALOP (Angola, Moçambique, Cabo Verde, Guiné-Bissau, 
+                        São Tomé e Príncipe) via CPLP. Vetor adicional via BRICS 
+                        para cooperação tecnológica Brasil–África.
+                    </div>
+                    <div class="vector-tags">
+                        <span class="tag">PALOP</span>
+                        <span class="tag">CPLP</span>
+                        <span class="tag">BRICS+</span>
+                    </div>
+                </div>
+
+                <div class="vector-card">
+                    <div class="vector-number">VETOR 03</div>
+                    <div class="vector-title">Ásia</div>
+                    <div class="vector-sub">via Macau</div>
+                    <div class="vector-desc">
+                        Porta institucional para China através do Fórum Macau 
+                        (Fórum de Cooperação China–Países de Língua Portuguesa). 
+                        Macau como SAR com sistema jurídico lusófono e ponte 
+                        para mercado chinês desde 2003.
+                    </div>
+                    <div class="vector-tags">
+                        <span class="tag">Fórum Macau</span>
+                        <span class="tag">SAR</span>
+                        <span class="tag">CPLP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eixo -->
+    <section id="eixo">
+        <div class="container">
+            <div class="section-header">Posicionamento</div>
+            <h2>Hubstry sediada no Rio de Janeiro.<br>
+                <span class="accent">FSA operando no eixo lusófono.</span>
+            </h2>
+            <p>
+                A arquitetura P²M² (Polímata, Poliglota, Multicloud, Multiagente) 
+                não reconhece fronteiras técnicas. Mas reconhece timing regulatório. 
+                Cada vetor civilizacional opera sob regime normativo distinto — 
+                e a mesma arquitetura de regência se adapta a cada um.
+            </p>
+            <p>
+                No Brasil, a ANPD consolida a LGPD e o PL 2338/2023 avança 
+                sobre governança de IA. Em Portugal, o NIS2 já transposto e 
+                o EU AI Act entra em fases de implementação. Em Angola e 
+                Moçambique, a infraestrutura digital cresce sob olhar da CPLP. 
+                Em Macau, o Fórum de Cooperação reúne dezessete anos de 
+                diálogo institucional China–Lusofonia.
+            </p>
+            <p>
+                O FSA não escolhe um mercado. Opera a <strong>regência</strong> 
+                entre todos — conectando engenharia, compliance, cybersecurity, 
+                PQC, AI safety, AI security e GRC de IA ao timing regulatório 
+                de cada jurisdição.
+            </p>
+        </div>
+    </section>
+
+    <!-- Architecture -->
+    <section id="arquitetura">
+        <div class="container">
+            <div class="section-header">Arquitetura</div>
+            <h2>P²M² — <span class="accent">Stack Profissional em Quatro Camadas</span></h2>
+            <p>
+                A arquitetura que sustenta os três vetores. Cada camada 
+                inferior sustenta a superior. Do epistêmico ao operacional.
+            </p>
+
+            <table class="arch-table">
+                <thead>
+                    <tr>
+                        <th>Camada</th>
+                        <th>Domínio</th>
+                        <th>Operação nos Vetores</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Polímata</td>
+                        <td>Cognitiva</td>
+                        <td>Domínio simultâneo de engenharia, compliance, cyber, AI safety e GRC — sem hierarquia rígida entre campos</td>
+                    </tr>
+                    <tr>
+                        <td>Poliglota</td>
+                        <td>Semiótica</td>
+                        <td>Português, inglês, chinês (Macau); linguagens jurídicas de civil law (UE, Brasil, Macau); linguagens técnicas (HTTP, SQL, IaC, RDF)</td>
+                    </tr>
+                    <tr>
+                        <td>Multicloud</td>
+                        <td>Infraestrutural</td>
+                        <td>Independência de provider em cada jurisdição: AWS, Azure, GCP, Magalu Cloud, Hetzner, on-premise quando soberania exige</td>
+                    </tr>
+                    <tr>
+                        <td>Multiagente</td>
+                        <td>Executória</td>
+                        <td>Pipelines CI/CD, orquestração de agentes autônomos, automação de compliance transversal, MCP (Model Context Protocol)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="font-size: 0.85rem; font-style: italic;">
+                Sem polimatia, a poliglossia vira coleção de habilidades desconectadas. 
+                Sem poliglossia, a multicloud vira infraestrutura sem propósito. 
+                Sem multicloud, a multiagência fica refém de provider único. 
+                Sem multiagência, as três camadas anteriores ficam sem alavanca de execução.
+            </p>
+        </div>
+    </section>
+
+    <!-- Regência / EBITTDA -->
+    <section id="regencia">
+        <div class="container">
+            <div class="section-header">Regência Transversal</div>
+            <h2>EBITTDA — <span class="accent">Métrica de Fronteira</span></h2>
+            <p>
+                O exemplo paradigmático do que o FSA faz nos três vetores. 
+                Em 2026, custos de tokens (compute de inferência LLM, embeddings, 
+                agentes autônomos) são realidade material em empresas que adotaram 
+                IA generativa em escala. Esses custos têm três características 
+                que escapam ao planejamento financeiro tradicional:
+            </p>
+            <p style="margin-left: 24px; border-left: 2px solid var(--border); padding-left: 16px;">
+                <strong>Imprevisibilidade</strong> — variam por uso, não por contrato fixo. 
+                Picos súbitos são comuns.<br><br>
+                <strong>Não-auditabilidade</strong> — registros distribuídos entre múltiplos 
+                providers, formatos heterogêneos, ausência de padrão contábil.<br><br>
+                <strong>Ausência de governança</strong> — nenhuma área tradicional 
+                (financeiro, TI, jurídico, compliance) tem mandato claro sobre eles.
+            </p>
+
+            <div class="ebitda-block">
+                <div class="ebitda-formula">
+                    Earnings Before Interest, Taxes, <span class="token">Tokens</span>, Depreciation and Amortization
+                </div>
+                <p>
+                    O segundo <strong>T</strong> internaliza o custo de tokens como 
+                    linha auditável, com rastreabilidade técnica (que agente gastou 
+                    quanto, em qual operação, sob qual política), conformidade 
+                    verificável (qual dado foi enviado para qual provider, sob 
+                    qual base legal) e governança clara (quem aprova, quem limita, 
+                    quem audita).
+                </p>
+                <p>
+                    O EBITTDA é o FSA em escala reduzida: um conceito de fronteira 
+                    que só faz sentido se você opera nos sete campos simultaneamente. 
+                    Um CFO sozinho não chega lá. Um engenheiro sozinho não chega lá. 
+                    Um <strong>regente</strong> chega.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Omnichannel -->
+    <section>
+        <div class="container">
+            <div class="section-header">Resiliência de Ativos</div>
+            <h2>Omnichannel — <span class="accent">Múltiplas Plataformas, Mesmo Ativo</span></h2>
+            <p>
+                O ecossistema Hubstry distribui seus ativos digitais por múltiplas 
+                plataformas e infraestruturas. Resiliência, redundância e 
+                diversificação por nicho. Se uma falha, as outras permanecem.
+            </p>
+
+            <div class="channels">
+                <div class="channel">
+                    <div class="channel-name">GitLab Pages</div>
+                    <div class="channel-url">hubstry-group.gitlab.io/fullstack-advocate</div>
+                    <div class="channel-status">[ INSTÂNCIA PRINCIPAL ]</div>
+                </div>
+                <div class="channel">
+                    <div class="channel-name">GitHub Pages</div>
+                    <div class="channel-url">guilherme-machado-ceo.github.io/fullstack-advocate</div>
+                    <div class="channel-status">[ INSTÂNCIA GEO ]</div>
+                </div>
+                <div class="channel">
+                    <div class="channel-name">AWS S3</div>
+                    <div class="channel-url">s3://fullstack-advocate-landing</div>
+                    <div class="channel-status">[ ARQUIVO LEGADO ]</div>
+                </div>
+                <div class="channel">
+                    <div class="channel-name">Bitbucket</div>
+                    <div class="channel-url">Em configuração</div>
+                    <div class="channel-status">[ PENDING ]</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-brand">HUBSTRY DEEP TECH</div>
+        <div class="footer-links">
+            <a href="https://hubstry.dev" target="_blank">hubstry.dev</a>
+            <a href="https://goncalvesetalii.github.io" target="_blank">Gonçalves et Alii</a>
+            <a href="https://calendly.com/guilhermemachado-hubstry-ecosystem/30min" target="_blank">Agendar Call</a>
+            <a href="https://github.com/guilherme-machado-ceo" target="_blank">GitHub</a>
+        </div>
+        <div class="footer-copy">
+            © 2024-2026 Hubstry Deep Tech · FSA — Instância 01 da Arquitetura P²M²
+        </div>
+        <div class="footer-epigraph">
+            FSA, 2024 → P²M², 2026.<br>
+            Da prova de conceito metodológica à arquitetura epistêmica.
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
